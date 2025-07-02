@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exemplo de Aparição Suave</title>
+  <style>
+    .fade-in {
+      opacity: 0;
+      animation: aparecer 1s ease forwards;
+      animation-delay: 0.2s; /* atraso de 0.5s após abrir a página */
+    }
+
+    @keyframes aparecer {
+      to {
+        opacity: 1;
+      }
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    .caixa {
+      background: white;
+      border-radius: 8px;
+      padding: 40px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="caixa fade-in">
+    <h1>Bem-vindo!</h1>
+    <p>Este conteúdo apareceu suavemente após o carregamento.</p>
+  </div>
+
+</body>
+</html>
