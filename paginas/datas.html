@@ -9,6 +9,32 @@
         a#datas{
             background-color: grey;
         }
+
+        section#lista_datas{
+            display: block;
+        }
+
+        section#lista_datas ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        section#lista_datas li {
+            margin: 0;
+            list-style-type: none;
+            font-weight: bolder;
+            text-shadow: 1px 1px 3px black;
+            color: white;
+        }
+
+        section#lista_datas a {
+            display: block;
+            color: white;
+            background-color: grey;
+            padding: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -17,23 +43,26 @@
     </header>
         <nav>
             <a href="../index.html" id="index">Início</a>
-            <a href="contatos.html">Contatos</a>
+            <a href="contatos.html" id="contatos">Contatos</a>
             <a href="#">Produtos</a>
             <a href="datas.html" id="datas">Datas Comemorativas</a>
-
         </nav>
     <main>
-        <article>
-            <section id="a1">
-                
-            </section>
-            <section id="a2">
-                
-            </section>
+        <section id="lista_datas">
+            <ul>
+                <li><a href="#">Dia das Mães</a></li>
+                <li><a href="#">Dia dos Pais</a></li>
+                <li><a href="#">Dia dos Avós</a></li>
+                <li><a href="#">Dia dos Namorados</a></li>
+            </ul>
         </section>
-        <aside id="aside-fixo">
 
-        </aside>
+        <section>
+            <article id="dia_dos_pais">
+                <h2>Canecas</h2>
+                <div></div>
+            </article>
+        </section>
     </main>
     <footer>
 
