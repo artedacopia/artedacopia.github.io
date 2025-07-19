@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
+/* Typical Devie Breakpoints 
+Pequenas telas: até 600px
+Celular: de 600px até 768px
+Tablet: 768px até 992px
+Desktop: 992px até 1200px
+Grandes telas: acima de 1200px
+*/
+
 * {
     margin: 0;
     padding: 0;
@@ -20,7 +28,7 @@ header#header {
     padding: 20px;
     display: flex;
     justify-content: space-between;
-    flex-flow: row wrap;
+    flex-flow: column wrap;
     align-items: center;
 }
 
@@ -31,10 +39,22 @@ header#header img{
 header#header nav {
     border: 2px dotted black;
     display: flex;
+    flex-flow: column wrap;
+}
+
+header#header span#burguer{
+    background-color: darkgrey;
+    width: 90vw;
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
 }
 
 header#header nav a {
     display: block;
+    flex: 1 1 auto;
+    width: 90vw;
+    text-align: center;
     text-decoration: none;
     padding: 10px;
     margin: 5px;
@@ -77,6 +97,21 @@ article > p {
     text-indent: 20px;
     padding: 10px 0px;
     margin: 0px;
+}
+
+@media screen and (min-width: 600px) {
+    header#header {
+        flex-flow: row wrap;
+    }
+
+    header#header span#burguer{
+        display: none;
+    }
+
+    header#header nav a {
+        display: inline-block;
+        width: auto;
+    }
 }
 
 

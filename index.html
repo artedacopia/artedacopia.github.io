@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arte da Cópia</title>
     <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
     <style>
         a#index{
             background-color: grey;
         }
     </style>
-<body>
+<body onresize="mudouTamanho()">
     <header id="header">
         <img src="imagens/logoac.svg" alt="Logo Arte da Cópia">
-        <nav>
+        <span id="burguer" class="material-icons" onclick="clickMenu()">menu</span>
+        <nav id="menu">
             <a href="index.html" id="index">Início</a>
             <a href="paginas/contatos.html">Contatos</a>
             <a href="#">Produtos</a>
@@ -39,4 +41,21 @@
 
     </footer>
 </body>
+<script>
+    let menu = document.querySelector("#menu");
+
+    function clickMenu(){
+        if (menu.style.display == "none"){
+            menu.style.display = "block";
+        } else {
+            menu.style.display = "none";
+        }
+    }
+
+    function mudouTamanho(){
+        if(window.innerWidth >= 768){
+            menu.style.display = "block";
+        }
+    }
+</script>
 </html>
