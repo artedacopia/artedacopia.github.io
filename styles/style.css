@@ -108,6 +108,11 @@ article > p {
         display: none;
     }
 
+    header#header nav#menu{
+        display: flex;
+        flex-flow: row wrap;
+    }
+
     header#header nav a {
         display: inline-block;
         width: auto;
