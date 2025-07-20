@@ -99,7 +99,7 @@ article > p {
     margin: 0px;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 768px) {
     header#header {
         flex-flow: row wrap;
     }
