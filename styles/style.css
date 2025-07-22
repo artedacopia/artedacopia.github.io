@@ -67,7 +67,6 @@ header#header nav a {
 
 
 
-
 article > a > img {
     width: 200px;
     height: 200px;
@@ -97,6 +96,35 @@ article > p {
     text-indent: 20px;
     padding: 10px 0px;
     margin: 0px;
+}
+
+article#art_contatos2 h2{
+    background-color: black;
+    color: white;
+    width: 300px;
+    padding: 10px;
+    border-radius: 0px 10px 10px 0px;
+    -webkit-border-radius: 0px 10px 10px 0px;
+    -moz-border-radius: 0px 10px 10px 0px;
+    -ms-border-radius: 0px 10px 10px 0px;
+    -o-border-radius: 0px 10px 10px 0px;
+}
+
+article#art_contatos2 h3{
+    margin: 10px 5px;
+}
+
+article#art_contatos2 a {
+    text-decoration: none;
+    background-color: white;
+    color: black;
+    padding: 5px;
+}
+
+footer {
+    position:absolute;
+    bottom: 25px;
+    right: 25px;
 }
 
 @media screen and (min-width: 768px) {
