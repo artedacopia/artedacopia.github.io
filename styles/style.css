@@ -16,7 +16,7 @@ Grandes telas: acima de 1200px
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: lightgrey;
+    background-color: rgb(243, 243, 243);
     font-size: 1em;
     width: 100vw;
     height: 100vh;
@@ -56,10 +56,69 @@ header#header nav a {
     width: 90vw;
     text-align: center;
     text-decoration: none;
-    padding: 10px;
+    font-weight: bolder;
+    padding: 8px;
     margin: 5px;
+    border-radius: 10px;
     background-color: black;
     color: white;
+    transition: .5s;
+}
+
+header#header nav a:hover {
+    background-color: rgb(68, 68, 68);
+}
+
+header#header nav a#whatsapp {
+    background: radial-gradient(circle, green);
+    transition: .5s;
+}
+
+header#header nav a#whatsapp:hover {
+    background: radial-gradient(circle, rgb(11, 155, 11), green, rgb(1, 70, 11));
+}
+
+
+header#header nav a img{
+    width: 15px;
+}
+
+main#index{
+    background-color: white;
+    max-width: 700px;
+    height: 500px;
+    margin: auto;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+}
+
+main#index article#info{
+    background-color: rgb(194, 194, 194);
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+}
+
+main#index article#info div{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    flex: 1 0 200px;
+    margin: 10px;
+    padding: 10px;
+    height: 100px;
+    border-radius: 15px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.438);
+}
+
+main#index article#info div h2{
+    font-size: 1em;
+}
+
+main#index article#info div p{
+    font-size: 0.7em;
 }
 
 main#contatos{
