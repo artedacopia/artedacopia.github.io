@@ -30,6 +30,12 @@
             padding: 10px;
         }
 
+        div#sections{
+            display: grid;
+            grid-template-rows: 100px 100px;
+            gap: 10px;
+        }
+
         main#container section#section1{
             background-color: blueviolet;
             padding: 10px;
@@ -66,13 +72,14 @@
         </nav>
     </header>
     <main id="container">
-        <section id="section1">
-            SECTION 1
-        </section>
-
-        <section id="section2">
-            SECTION 2
-        </section>
+        <div id="sections">
+            <section id="section1">
+                SECTION 1
+            </section>
+            <section id="section2">
+                SECTION 2
+            </section>
+        </div>
 
         <aside>
             ASIDE
