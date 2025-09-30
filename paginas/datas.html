@@ -5,67 +5,135 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arte da Cópia</title>
     <link rel="stylesheet" href="../styles/style.css">
-    <style>
-        a#datas{
-            background-color: grey;
-        }
-
-        section#lista_datas{
-            display: block;
-        }
-
-        section#lista_datas ul {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        section#lista_datas li {
-            margin: 0;
-            list-style-type: none;
-            font-weight: bolder;
-            text-shadow: 1px 1px 3px black;
-            color: white;
-        }
-
-        section#lista_datas a {
-            display: block;
-            color: white;
-            background-color: grey;
-            padding: 10px;
-        }
-
-    </style>
+    <link rel="stylesheet" href="datas.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
+
     <header id="header">
-        <img src="../imagens/logoac.svg" alt="">
-        <nav>
+        <img src="../imagens/logoac.svg" alt="Logo Arte da Cópia">
+        <span id="burguer" class="material-icons" onclick="clickMenu()">menu</span>
+        <nav id="menu">
             <a href="../index.html" id="index">Início</a>
-            <a href="contatos.html" id="contatos">Contatos</a>
-            <a href="#">Produtos</a>
-            <a href="datas.html" id="datas">Datas Comemorativas</a>
+            <a href="contatos.html">Contatos</a>
+            <!-- <a href="#">Produtos</a> -->
+            <a href="#">Datas Comemorativas</a>
+            <a href="https://wa.me/5584988334461" id="whatsapp"><img src="imagens/whatsapp_logo.svg" alt=""> Orçamentos</a>
         </nav>
     </header>
+
+
     <main>
         <section id="lista_datas">
             <ul>
+                <li><a href="">Dia dos Professores</a></li>
+                <!--
+                
                 <li><a href="#">Dia das Mães</a></li>
                 <li><a href="#">Dia dos Pais</a></li>
                 <li><a href="#">Dia dos Avós</a></li>
                 <li><a href="#">Dia dos Namorados</a></li>
+                <li><a href="#">Natal</a></li>
+                <li><a href="#">Páscoa</a></li>
+                <li><a href="#">Ano Novo</a></li>
+
+                -->
             </ul>
         </section>
 
         <section>
-            <article id="dia_dos_pais">
-                <h2>Canecas</h2>
+            <article id="articleDiaDosProfessores">
+                <h2>Dia dos Professores</h2>
+                <h3>Canecas</h3>
+                <div>
+                    <a href="#" class="open-gif" data-gif="../imagens/produtos/canecas/mockupsCanecasProfessores/gifsProfessores/gifProfessor01.gif"><img src="../imagens/produtos/canecas/mockupsCanecasProfessores/mockupCanecaProfessor01.jpg" alt="Caneca 01"></a>
+                    <a href="#" class="open-gif" data-gif="../imagens/produtos/canecas/mockupsCanecasProfessores/gifsProfessores/gifProfessor02.gif"><img src="../imagens/produtos/canecas/mockupsCanecasProfessores/mockupCanecaProfessor02.jpg" alt="Caneca 02"></a>
+                    <a href="#" class="open-gif" data-gif="../imagens/produtos/canecas/mockupsCanecasProfessores/gifsProfessores/gifProfessor03.gif"><img src="../imagens/produtos/canecas/mockupsCanecasProfessores/mockupCanecaProfessor03.jpg" alt="Caneca 03"></a>
+                    <a href="#" class="open-gif" data-gif="../imagens/produtos/canecas/mockupsCanecasProfessores/gifsProfessores/gifProfessor04.gif"><img src="../imagens/produtos/canecas/mockupsCanecasProfessores/mockupCanecaProfessor04.jpg" alt="Caneca 04"></a>
+                    <a href="#" class="open-gif" data-gif="../imagens/produtos/canecas/mockupsCanecasProfessores/gifsProfessores/gifProfessor05.gif"><img src="../imagens/produtos/canecas/mockupsCanecasProfessores/mockupCanecaProfessor05.jpg" alt="Caneca 05"></a>
+                    <a href="#" class="open-gif" data-gif="../imagens/produtos/canecas/mockupsCanecasProfessores/gifsProfessores/gifProfessor06.gif"><img src="../imagens/produtos/canecas/mockupsCanecasProfessores/mockupCanecaProfessor06.jpg" alt="Caneca 06"></a>
+                    <a href="#" class="open-gif" data-gif="../imagens/produtos/canecas/mockupsCanecasProfessores/gifsProfessores/gifProfessor07.gif"><img src="../imagens/produtos/canecas/mockupsCanecasProfessores/mockupCanecaProfessor07.jpg" alt="Caneca 07"></a>
+                    <a href="#" class="open-gif" data-gif="../imagens/produtos/canecas/mockupsCanecasProfessores/gifsProfessores/gifProfessor08.gif"><img src="../imagens/produtos/canecas/mockupsCanecasProfessores/mockupCanecaProfessor08.jpg" alt="Caneca 08"></a>
+                    <a href="#" class="open-gif" data-gif="../imagens/produtos/canecas/mockupsCanecasProfessores/gifsProfessores/gifProfessor09.gif"><img src="../imagens/produtos/canecas/mockupsCanecasProfessores/mockupCanecaProfessor09.jpg" alt="Caneca 09"></a>
+                    <a href="#" class="open-gif" data-gif="../imagens/produtos/canecas/mockupsCanecasProfessores/gifsProfessores/gifProfessor10.gif"><img src="../imagens/produtos/canecas/mockupsCanecasProfessores/mockupCanecaProfessor10.jpg" alt="Caneca 10"></a>
+                    <a href="#" class="open-gif" data-gif="../imagens/produtos/canecas/mockupsCanecasProfessores/gifsProfessores/gifProfessor11.gif"><img src="../imagens/produtos/canecas/mockupsCanecasProfessores/mockupCanecaProfessor11.jpg" alt="Caneca 11"></a>
+                    <a href="#" class="open-gif" data-gif="../imagens/produtos/canecas/mockupsCanecasProfessores/gifsProfessores/gifProfessor12.gif"><img src="../imagens/produtos/canecas/mockupsCanecasProfessores/mockupCanecaProfessor12.jpg" alt="Caneca 12"></a>
+                    <a href="#" class="open-gif" data-gif="../imagens/produtos/canecas/mockupsCanecasProfessores/gifsProfessores/gifProfessor13.gif"><img src="../imagens/produtos/canecas/mockupsCanecasProfessores/mockupCanecaProfessor13.jpg" alt="Caneca 13"></a>
+                    <a href="#" class="open-gif" data-gif="../imagens/produtos/canecas/mockupsCanecasProfessores/gifsProfessores/gifProfessor14.gif"><img src="../imagens/produtos/canecas/mockupsCanecasProfessores/mockupCanecaProfessor14.jpg" alt="Caneca 14"></a>
+                    <a href="#" class="open-gif" data-gif="../imagens/produtos/canecas/mockupsCanecasProfessores/gifsProfessores/gifProfessor15.gif"><img src="../imagens/produtos/canecas/mockupsCanecasProfessores/mockupCanecaProfessor15.jpg" alt="Caneca 15"></a>
+                    <a href="#" class="open-gif" data-gif="../imagens/produtos/canecas/mockupsCanecasProfessores/gifsProfessores/gifProfessor16.gif"><img src="../imagens/produtos/canecas/mockupsCanecasProfessores/mockupCanecaProfessor16.jpg" alt="Caneca 16"></a>
+                    <a href="#" class="open-gif" data-gif="../imagens/produtos/canecas/mockupsCanecasProfessores/gifsProfessores/gifProfessor17.gif"><img src="../imagens/produtos/canecas/mockupsCanecasProfessores/mockupCanecaProfessor17.jpg" alt="Caneca 17"></a>
+                </div>
+            </article>
+
+            <!--
+            
+            <article id="articleDiaDasMaes">
+                <h2>Dia das Mães</h2>
                 <div></div>
             </article>
+
+            <article id="articleDiaDosPais">
+                <h2>Dia dos Pais</h2>
+                <div></div>
+            </article>
+
+            <article id="articleDiaDosAvos">
+                <h2>Dia dos Avós</h2>
+                <div></div>
+            </article>
+
+            <article id="articleDiaDosNamorados">
+                <h2>Dia dos Namorados</h2>
+                <div></div>
+            </article>
+
+            <article id="articleNatal">
+                <h2>Natal</h2>
+                <div></div>
+            </article>
+
+            <article id="articlePascoa">
+                <h2>Páscoa</h2>
+                <div></div>
+            </article>
+
+            <article id="articleAnoNovo">
+                <h2>Dia das Crianças</h2>
+                <div></div>
+            </article>
+            
+            -->
         </section>
     </main>
     <footer>
-
     </footer>
+
+    <!-- Lightbox para GIF -->
+    <div id="lightbox-gif" style="display:none;position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.8);justify-content:center;align-items:center;">
+        <img id="lightbox-gif-img" src="" alt="GIF Professor" style="max-width:90vw;max-height:90vh;border-radius:10px;box-shadow:0 0 20px #000;">
+    </div>
 </body>
+
+<script src="../scripts/script.js"></script>
+<script>
+// Lightbox para múltiplas imagens
+const lightbox = document.getElementById('lightbox-gif');
+const lightboxImg = document.getElementById('lightbox-gif-img');
+const gifLinks = document.querySelectorAll('.open-gif');
+gifLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const gifSrc = this.getAttribute('data-gif');
+        lightboxImg.src = gifSrc;
+        lightbox.style.display = 'flex';
+    });
+});
+lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) {
+        lightbox.style.display = 'none';
+        lightboxImg.src = '';
+    }
+});
+</script>
 </html>
