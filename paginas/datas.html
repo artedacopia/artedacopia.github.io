@@ -8,126 +8,85 @@
     <link rel="stylesheet" href="datas.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>
-
-    <header id="header">
-        <img src="../imagens/logoac.svg" alt="Logo Arte da Cópia">
-        <span id="burguer" class="material-icons" onclick="clickMenu()">menu</span>
-        <nav id="menu">
-            <a href="../index.html" id="index">Início</a>
-            <a href="contatos.html">Contatos</a>
-            <!-- <a href="#">Produtos</a> -->
-            <a href="#">Datas Comemorativas</a>
-            <a href="https://wa.me/5584988334461" id="whatsapp"><img src="imagens/whatsapp_logo.svg" alt=""> Orçamentos</a>
-        </nav>
-    </header>
-
+<body onload="header()" onresize="mudouTamanho()">
+    <header id="header"><!-- O CONTEÚDO SERÁ INJETADO VIA JS PARA FÁCIL MANUTENÇÃO --></header>
 
     <main>
         <section id="lista_datas">
             <ul>
                 <li><a href="#" id="btnDiaDosProfessores">Dia dos Professores</a></li>
+                <!-- <li><a href="#" id="btnDiaDosNamorados">Dia dos Namorados</a></li> -->
+
                 <!--
-                
-                <li><a href="#">Dia das Mães</a></li>
-                <li><a href="#">Dia dos Pais</a></li>
-                <li><a href="#">Dia dos Avós</a></li>
-                <li><a href="#">Dia dos Namorados</a></li>
-                <li><a href="#">Natal</a></li>
-                <li><a href="#">Páscoa</a></li>
-                <li><a href="#">Ano Novo</a></li>
+
+                    <li><a href="#" id="btnDiaDasMaes">Dia das Mães</a></li>
+                    <li><a href="#" id="btnDiaDosPais">Dia dos Pais</a></li>
+                    <li><a href="#" id="btnDiaDosAvos">Dia dos Avós</a></li>
+                    <li><a href="#" id="btnNatal">Natal</a></li>
+                    <li><a href="#" id="btnPascoa">Páscoa</a></li>
+                    <li><a href="#" id="btnAnoNovo">Ano Novo</a></li>
 
                 -->
             </ul>
         </section>
 
         <section id="produtos_datas">
-            
-
             <!--
             
-            <article id="articleDiaDasMaes">
-                <h2>Dia das Mães</h2>
-                <div></div>
-            </article>
+                <article id="articleDiaDasMaes">
+                    <h2>Dia das Mães</h2>
+                    <div></div>
+                </article>
 
-            <article id="articleDiaDosPais">
-                <h2>Dia dos Pais</h2>
-                <div></div>
-            </article>
+                <article id="articleDiaDosPais">
+                    <h2>Dia dos Pais</h2>
+                    <div></div>
+                </article>
 
-            <article id="articleDiaDosAvos">
-                <h2>Dia dos Avós</h2>
-                <div></div>
-            </article>
+                <article id="articleDiaDosAvos">
+                    <h2>Dia dos Avós</h2>
+                    <div></div>
+                </article>
 
-            <article id="articleDiaDosNamorados">
-                <h2>Dia dos Namorados</h2>
-                <div></div>
-            </article>
+                <article id="articleDiaDosNamorados">
+                    <h2>Dia dos Namorados</h2>
+                    <div></div>
+                </article>
 
-            <article id="articleNatal">
-                <h2>Natal</h2>
-                <div></div>
-            </article>
+                <article id="articleNatal">
+                    <h2>Natal</h2>
+                    <div></div>
+                </article>
 
-            <article id="articlePascoa">
-                <h2>Páscoa</h2>
-                <div></div>
-            </article>
+                <article id="articlePascoa">
+                    <h2>Páscoa</h2>
+                    <div></div>
+                </article>
 
-            <article id="articleAnoNovo">
-                <h2>Dia das Crianças</h2>
-                <div></div>
-            </article>
+                <article id="articleAnoNovo">
+                    <h2>Dia das Crianças</h2>
+                    <div></div>
+                </article>
             
             -->
         </section>
     </main>
+
     <footer>
         Desenvolvido por Marcos Rocha
     </footer>
 
     <!-- Lightbox para GIF -->
-    <div id="lightbox-gif" style="display:none;position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.8);justify-content:center;align-items:center;">
-        <img id="lightbox-gif-img" src="" alt="GIF Professor" style="max-width:90vw;max-height:90vh;border-radius:10px;box-shadow:0 0 20px #000;">
+    <div id="lightbox-gif" style="display:none; position:fixed; z-index:9999; top:0; left:0; width:100vw;height:100vh; background:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
+
+        <img id="lightbox-gif-img" src="" alt="GIF Professor" style="max-width:90vw; max-height:90vh;border-radius:10px; box-shadow:0 0 20px #000;">
+
     </div>
 </body>
 
+<!-- SCRIPTS -->
 <script src="../scripts/script.js"></script>
-<script>
-// Lightbox para múltiplas imagens
-const lightbox = document.getElementById('lightbox-gif');
-const lightboxImg = document.getElementById('lightbox-gif-img');
+<script src="../scripts/paginas_header.js"></script>
+<script src="../scripts/lightbox.js"></script>
 
-function bindGifLinks() {
-    const gifLinks = document.querySelectorAll('.open-gif');
-    gifLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const gifSrc = this.getAttribute('data-gif');
-            lightboxImg.src = gifSrc;
-            lightbox.style.display = 'flex';
-        });
-    });
-}
-
-lightbox.addEventListener('click', function(e) {
-    if (e.target === lightbox) {
-        lightbox.style.display = 'none';
-        lightboxImg.src = '';
-    }
-});
-
-// Injeção do conteúdo ao clicar no botão
-document.getElementById('btnDiaDosProfessores').addEventListener('click', function(e) {
-    e.preventDefault();
-    fetch('diadosprofessores.html')
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById('produtos_datas').innerHTML = html;
-            bindGifLinks(); // Reaplica eventos nos novos elementos
-        });
-});
-</script>
 </html>
