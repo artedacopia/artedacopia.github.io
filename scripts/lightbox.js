@@ -27,7 +27,7 @@ lightbox.addEventListener('click', function(e) {
 // Injeção do conteúdo do dia dos Professores
 document.getElementById('btnDiaDosProfessores').addEventListener('click', function(e) {
     e.preventDefault();
-    fetch('diadosprofessores.html')
+    fetch('/p/diadosprofessores.html')
         .then(response => response.text())
         .then(html => {
             document.getElementById('produtos_datas').innerHTML = html;
@@ -39,7 +39,7 @@ document.getElementById('btnDiaDosProfessores').addEventListener('click', functi
 //Injeção do conteúdo do dia dos Namorados
 document.getElementById('btnDiaDosNamorados').addEventListener('click', function(e) {
     e.preventDefault();
-    fetch('diadosnamorados.html')
+    fetch('/p/diadosnamorados.html')
         .then(response => response.text())
         .then(html => {
             document.getElementById('produtos_datas').innerHTML = html;
