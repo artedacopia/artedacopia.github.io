@@ -12,18 +12,8 @@
             background-color: grey;
         }
     </style>
-<body onresize="mudouTamanho()">
-    <header id="header">
-        <img src="/imagens/logoac.svg" alt="Logo Arte da Cópia">
-        <span id="burguer" class="material-icons" onclick="clickMenu()">menu</span>
-        <nav id="menu">
-            <a href="/" id="index">Início</a>
-            <a href="/p/contatos">Contatos</a>
-            <!-- <a href="#">Produtos</a> -->
-            <a href="/p/datas">Datas Comemorativas</a>
-            <a href="https://wa.me/5584988334461" id="whatsapp"><img src="/imagens/whatsapp_logo.svg" alt=""> Orçamentos</a>
-        </nav>
-    </header>
+<body onload="header()" onresize="mudouTamanho()">
+    <header id="header"><!-- O CONTEÚDO SERÁ INJETADO VIA JS PARA FÁCIL MANUTENÇÃO --></header>
 
     <main id="index">
         <section>
@@ -63,6 +53,8 @@
     </footer>
 </body>
 
-<script src="/scripts/script.js"></script>
+    <!-- SCRIPTS -->
+    <script src="/scripts/script.js"></script>
+    <script src="/scripts/paginas_header.js"></script>
 
 </html>
