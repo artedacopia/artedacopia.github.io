@@ -1,5 +1,6 @@
 main{
     padding: 20px;
+    min-width: 600px;
     max-width: 700px;
     margin: 15px auto;
     background-color: white;
@@ -13,40 +14,37 @@ article img{
     width: 150px;
 }
 
-a#datas{
-    background-color: grey;
-}
-
-section#lista_datas{
+section#lista_datas, section#content_servicos {
     display: block;
     text-align: center;
     margin: 20px;
 }
 
-section#lista_datas ul {
+section#lista_datas ul, section#content_servicos ul {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
 
-section#lista_datas li {
-    margin: 0;
+section#lista_datas li, .liServices {
+    display: block;
     list-style-type: none;
     font-weight: bolder;
     text-shadow: 1px 1px 3px black;
     color: white;
 }
 
-section#lista_datas a {
+section#lista_datas a, .btnServices {
     display: block;
     color: white;
     background-color: grey;
     padding: 10px;
     border-radius: 10px;
     text-decoration: none;
+    cursor: pointer;
 }
 
-section#lista_datas a:hover {
+section#lista_datas a:hover, .btnServices:hover {
     background-color: rgb(71, 71, 71);
     text-decoration: underline;
 }

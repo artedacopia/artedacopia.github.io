@@ -23,37 +23,23 @@ lightbox.addEventListener('click', function(e) {
     }
 });
 
+document.addEventListener('click', function(e) {
+    const btn = e.target.closest('[data-url]'); // qualquer botão dinâmico
 
-// Injeção do conteúdo do dia dos Professores
-document.getElementById('btnDiaDosProfessores').addEventListener('click', function(e) {
+    if (!btn) return;
+
     e.preventDefault();
-    fetch('/p/pageServices/diadosprofessores.html')
-        .then(response => response.text())
+
+    const url = btn.dataset.url;
+    const targetSelector = btn.dataset.target;
+    const target = document.querySelector(targetSelector);
+
+    fetch(url)
+        .then(r => r.text())
         .then(html => {
-            document.getElementById('content_servicos').innerHTML = html;
-            bindGifLinks(); // Reaplica eventos nos novos elementos
+            target.innerHTML = html;
+            bindGifLinks(); // reaplica eventos se precisar
         });
 });
 
 
-//Injeção do conteúdo do dia dos Namorados
-document.getElementById('btnDiaDosNamorados').addEventListener('click', function(e) {
-    e.preventDefault();
-    fetch('/p/pageServices/diadosnamorados.html')
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById('content_servicos').innerHTML = html;
-            bindGifLinks(); // Reaplica eventos nos novos elementos
-        });
-});
-
-//Injeção do conteúdo de Canecas
-document.getElementById('btnCanecas').addEventListener('click', function(e) {
-    e.preventDefault();
-    fetch('/p/pageServices/canecas.html')
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById('content_servicos').innerHTML = html;
-            bindGifLinks(); // Reaplica eventos nos novos elementos
-        });
-});
