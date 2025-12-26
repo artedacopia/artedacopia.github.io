@@ -20,22 +20,23 @@ section#lista_datas, section#content_servicos {
     margin: 20px;
 }
 
-section#lista_datas ul, section#content_servicos ul {
+section#lista_datas ul, section#content_servicos ul, section#buttonServices ul {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    flex-direction: row;
+    gap: 15px;
 }
 
-section#lista_datas li, .liServices {
-    display: block;
+.liServices {
     list-style-type: none;
+    display: block;
     font-weight: bolder;
     text-shadow: 1px 1px 3px black;
     color: white;
 }
 
-section#lista_datas a, .btnServices {
-    display: block;
+.btnServices{
+    display: inline-block;
     color: white;
     background-color: grey;
     padding: 10px;
@@ -44,7 +45,14 @@ section#lista_datas a, .btnServices {
     cursor: pointer;
 }
 
-section#lista_datas a:hover, .btnServices:hover {
+.btnServices:hover {
     background-color: rgb(71, 71, 71);
     text-decoration: underline;
+}
+
+#buttonServices {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    flex-direction: row;
 }
