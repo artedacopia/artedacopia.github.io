@@ -1,15 +1,23 @@
 // Lightbox para múltiplas imagens
 const lightbox = document.getElementById('lightbox-gif');
 const lightboxImg = document.getElementById('lightbox-gif-img');
+const lightboxCode = document.getElementById('lightbox-code');
+const copyBtn = document.getElementById('copy-code-btn');
 
 
 function bindGifLinks() {
     const gifLinks = document.querySelectorAll('.open-gif');
+
     gifLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
-            const gifSrc = this.getAttribute('data-gif');
+
+            const gifSrc = this.dataset.gif;
+            const code = this.dataset.code;
+
             lightboxImg.src = gifSrc;
+            lightboxCode.textContent = code;
+
             lightbox.style.display = 'flex';
         });
     });
@@ -42,4 +50,20 @@ document.addEventListener('click', function(e) {
         });
 });
 
+copyBtn.addEventListener('click', () => {
+    const code = lightboxCode.textContent;
+    if (!code) return;
 
+    navigator.clipboard.writeText(code).then(() => {
+        copyBtn.textContent = 'Código Copiado!';
+        setTimeout(() => copyBtn.textContent = 'Copiar Código', 1500);
+    });
+});
+
+lightbox.addEventListener('click', function (e) {
+    if (e.target === lightbox) {
+        lightbox.style.display = 'none';
+        lightboxImg.src = '';
+        lightboxCode.textContent = '';
+    }
+});

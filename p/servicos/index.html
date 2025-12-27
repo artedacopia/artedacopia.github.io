@@ -19,9 +19,24 @@
                         Canecas
                     </a>
                 </li>
-                <!-- <li><a class="btnServices" data-target="#buttonServices" data-url="/p/pageServices/camisas.html">Camisas</a></li> -->
-                <!-- <li><a href="" id="btnDiaDosProfessores">Dia dos Professores</a></li> -->
-                <!-- <li><a href="#" id="btnDiaDosNamorados">Dia dos Namorados</a></li> -->
+
+                <!-- <li class="liServices">
+                    <a class="btnServices" data-target="#buttonServices" data-url="/p/pageServices/camisas.html">
+                        Camisas
+                    </a>
+                </li>
+
+                <li class="liServices">
+                    <a class="btnServices" data-target="#buttonServices" data-url="/p/pageServices/camisas.html">
+                        Dia dos Professores
+                    </a>
+                </li>
+
+                <li class="liServices">
+                    <a class="btnServices" data-target="#buttonServices" data-url="/p/pageServices/camisas.html">
+                        Dia dos Namorados
+                    </a>
+                </li> -->
 
                 <!--
                     <li><a href="#" id="btnDiaDasMaes">Dia das Mães</a></li>
@@ -49,10 +64,43 @@
     </footer>
 
     <!-- Lightbox para GIF -->
-    <div id="lightbox-gif" style="display:none; position:fixed; z-index:9999; top:0; left:0; width:100vw;height:100vh; background:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
+    <div
+    id="lightbox-gif"
+    style="
+    display:none;
+    position:fixed;
+    z-index:9999;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    background:rgba(0,0,0,0.8);
+    justify-content:center;
+    align-items:center;
+    "
+    >
 
-        <img id="lightbox-gif-img" src="" alt="GIF Professor" style="max-width:90vw; max-height:90vh;border-radius:10px; box-shadow:0 0 20px #000;">
+        <div style="text-align:center; color:white;">
+            <img id="lightbox-gif-img"
+                src=""
+                alt="GIF"
+                style="max-width:90vw; max-height:70vh; border-radius:10px; box-shadow:0 0 20px #000;"
+            >
 
+            <div style="margin-top:15px;">
+                <code id="lightbox-code"
+                    style="background:#222; padding:8px 12px; border-radius:6px; display:inline-block;">
+                </code>
+
+                <br><br>
+
+                <button id="copy-code-btn"
+                        style="padding:8px 12px; border:none; border-radius:6px; cursor:pointer;">
+                    Copiar
+                </button>
+            </div>
+        </div>
+</div>
     </div>
 </body>
 

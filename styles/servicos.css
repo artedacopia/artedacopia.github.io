@@ -1,8 +1,8 @@
 main{
     padding: 20px;
-    min-width: 600px;
+    width: 100%;
     max-width: 750px;
-    margin: 15px auto;
+    margin: 0px auto 15px auto;
     background-color: white;
 }
 
@@ -17,7 +17,8 @@ article img{
 section#lista_datas, section#content_servicos {
     display: block;
     text-align: center;
-    margin: 20px;
+    margin: 20px 0px;
+    width: 100%;
 }
 
 section#lista_datas ul, section#content_servicos ul, section#buttonServices ul {
