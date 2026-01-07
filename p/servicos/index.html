@@ -7,6 +7,20 @@
     <link rel="stylesheet" href="/styles/style.css">
     <link rel="stylesheet" href="/styles/servicos.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        #lightbox-gif{
+            display:none;
+            position:fixed;
+            z-index:9999;
+            top:0;
+            left:0;
+            width:100vw;
+            height:100vh;
+            background:rgba(0,0,0,0.8);
+            justify-content:center;
+            align-items:center;
+        }
+    </style>
 </head>
 <body onload="header()" onresize="mudouTamanho()">
     <header id="header"><!-- O CONTEÚDO SERÁ INJETADO VIA JS PARA FÁCIL MANUTENÇÃO --></header>
@@ -64,28 +78,10 @@
     </footer>
 
     <!-- Lightbox para GIF -->
-    <div
-    id="lightbox-gif"
-    style="
-    display:none;
-    position:fixed;
-    z-index:9999;
-    top:0;
-    left:0;
-    width:100vw;
-    height:100vh;
-    background:rgba(0,0,0,0.8);
-    justify-content:center;
-    align-items:center;
-    "
-    >
-
+    <div id="lightbox-gif">
         <div style="text-align:center; color:white;">
-            <img id="lightbox-gif-img"
-                src=""
-                alt="GIF"
-                style="max-width:90vw; max-height:70vh; border-radius:10px; box-shadow:0 0 20px #000;"
-            >
+            <img id="lightbox-gif-img" src="" alt="GIF"
+                style="max-width:90vw; max-height:70vh; border-radius:10px; box-shadow:0 0 20px #000;">
 
             <div style="margin-top:15px;">
                 <code id="lightbox-code"
@@ -100,7 +96,6 @@
                 </button>
             </div>
         </div>
-</div>
     </div>
 </body>
 
