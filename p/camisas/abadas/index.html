@@ -51,10 +51,6 @@
             <img id="lightbox-img" src="/imagens/produtos/camisas/abadas/img__1.jpg" alt="JPG"
                 style="max-width:90vw; max-height:70vh; border-radius:10px; box-shadow:0 0 20px #000;">
         </div>
-
-        <button id="prev-btn" style="position:absolute; left:10px; top:50%; transform:translateY(-50%); background:#fff; border:none; border-radius:50%; width:100px; height:100px; cursor:pointer; font-size: 25pt;">&lt;</button>
-
-        <button id="next-btn" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); background:#fff; border:none; border-radius:50%; width:100px; height:100px; cursor:pointer; font-size: 25pt;">&gt;</button>
     </div>
 </body>
     <script>
@@ -88,24 +84,18 @@
             lightboxImg.src = ''; // Limpa a fonte da imagem
         });
         // Seleciona os botões de navegação
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        let currentIndex = 0;
-        function updateLightboxImage() {
-            lightboxImg.src = links[currentIndex].href;
-        }
-        
-        prevBtn.addEventListener('click', function(event) {
-            event.stopPropagation(); // Impede o fechamento do lightbox
-            currentIndex = (currentIndex - 1 + links.length) % links.length;
-            updateLightboxImage();
-        });
 
-        nextBtn.addEventListener('click', function(event) {
-            event.stopPropagation(); // Impede o fechamento do lightbox
+        let currentIndex = 0;
+
+        function nextImage() {
             currentIndex = (currentIndex + 1) % links.length;
             updateLightboxImage();
-        });
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + links.length) % links.length;
+            updateLightboxImage();
+        }
 
         let startX = 0;
         let endX = 0;
@@ -135,6 +125,23 @@
             }
         }
 
+        document.addEventListener('keydown', function(event) {
+        // só funciona se o lightbox estiver aberto
+        if (lightbox.style.display !== 'flex') return;
+
+        if (event.key === 'ArrowRight') {
+            nextImage();
+        }
+
+        if (event.key === 'ArrowLeft') {
+            prevImage();
+        }
+
+        if (event.key === 'Escape') {
+            lightbox.style.display = 'none';
+            lightboxImg.src = '';
+        }
+    });
 
 
     </script>
