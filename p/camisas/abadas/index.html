@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Modelos de Abadás</title>
     <style>
         #lightbox{
             display:none;
@@ -65,18 +65,22 @@
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
 
+        function updateLightboxImage() {
+            lightboxImg.src = links[currentIndex].href;
+        }
+
         // Adiciona um evento de clique a cada link
-        links.forEach(link => {
+        links.forEach((link, index) => {
             link.addEventListener('click', function(event) {
-                event.preventDefault(); // Impede o comportamento padrão do link
+                event.preventDefault();
 
-                // Define a fonte da imagem do lightbox para o href do link clicado
-                lightboxImg.src = this.href;
+                currentIndex = index; // <<< ESSENCIAL
+                updateLightboxImage();
 
-                // Exibe o lightbox
                 lightbox.style.display = 'flex';
             });
         });
+
 
         // Adiciona um evento de clique ao lightbox para fechá-lo
         lightbox.addEventListener('click', function() {
@@ -90,15 +94,48 @@
         function updateLightboxImage() {
             lightboxImg.src = links[currentIndex].href;
         }
+        
         prevBtn.addEventListener('click', function(event) {
             event.stopPropagation(); // Impede o fechamento do lightbox
             currentIndex = (currentIndex - 1 + links.length) % links.length;
             updateLightboxImage();
         });
+
         nextBtn.addEventListener('click', function(event) {
             event.stopPropagation(); // Impede o fechamento do lightbox
             currentIndex = (currentIndex + 1) % links.length;
             updateLightboxImage();
         });
+
+        let startX = 0;
+        let endX = 0;
+
+        lightbox.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+        }, { passive: true });
+
+        lightbox.addEventListener('touchend', function(e) {
+            endX = e.changedTouches[0].clientX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const diff = startX - endX;
+
+            // ajuste de sensibilidade (quanto maior, mais "forte" o swipe)
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                    // swipe para esquerda → próxima imagem
+                    currentIndex = (currentIndex + 1) % links.length;
+                } else {
+                    // swipe para direita → imagem anterior
+                    currentIndex = (currentIndex - 1 + links.length) % links.length;
+                }
+                updateLightboxImage();
+            }
+        }
+
+
+
     </script>
 </html>
