@@ -57,3 +57,16 @@ section#lista_datas ul, section#content_servicos ul, section#buttonServices ul {
     margin: 20px;
     flex-direction: row;
 }
+
+#lightbox-gif{
+    display:none;
+    position:fixed;
+    z-index:9999;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    background:rgba(0,0,0,0.8);
+    justify-content:center;
+    align-items:center;
+}

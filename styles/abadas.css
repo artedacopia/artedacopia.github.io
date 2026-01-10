@@ -1,0 +1,32 @@
+#lightbox{
+    display:none;
+    position:fixed;
+    z-index:9999;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    background:rgba(0,0,0,0.8);
+    justify-content:center;
+    align-items:center;
+}
+
+.imgAbada{
+    max-width:150px;
+    margin: 10px;
+    border-radius:10px;
+    box-shadow:2px 2px 10px #00000067;
+}
+
+.imgAbada:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: .3s;
+}
+
+#galeriaAbadas{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}

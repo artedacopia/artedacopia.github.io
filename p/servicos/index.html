@@ -6,23 +6,10 @@
     <title>Arte da Cópia</title>
     <link rel="stylesheet" href="/styles/style.css">
     <link rel="stylesheet" href="/styles/servicos.css">
+    <link rel="stylesheet" href="/styles/header.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <style>
-        #lightbox-gif{
-            display:none;
-            position:fixed;
-            z-index:9999;
-            top:0;
-            left:0;
-            width:100vw;
-            height:100vh;
-            background:rgba(0,0,0,0.8);
-            justify-content:center;
-            align-items:center;
-        }
-    </style>
 </head>
-<body onload="header()" onresize="mudouTamanho()">
+<body>
     <header id="header"><!-- O CONTEÚDO SERÁ INJETADO VIA JS PARA FÁCIL MANUTENÇÃO --></header>
 
     <main>
@@ -101,7 +88,6 @@
 
 <!-- SCRIPTS -->
 <script src="/scripts/script.js"></script>
-<script src="/scripts/paginas_header.js"></script>
 <script src="/scripts/lightbox.js"></script>
 
 </html>
