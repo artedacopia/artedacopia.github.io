@@ -1,86 +1,205 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Multiplicador de Páginas PDF</title>
-  <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF Page Multiplier</title>
+
+<script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #1e1e2f, #2c2c54);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background: #2f2f4f;
+  padding: 40px;
+  border-radius: 20px;
+  width: 450px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+h1 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.drop-zone {
+  border: 2px dashed #6c63ff;
+  padding: 40px;
+  text-align: center;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-bottom: 20px;
+}
+
+.drop-zone.dragover {
+  background: rgba(108,99,255,0.2);
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  background: #6c63ff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #5848e5;
+}
+
+.file-name {
+  font-size: 12px;
+  opacity: 0.8;
+  margin-top: 10px;
+  text-align: center;
+}
+</style>
 </head>
 <body>
 
-  <h2>Multiplicador de Páginas PDF</h2>
+<div class="container">
+  <h1>Multiplicar Páginas PDF</h1>
 
-  <input type="file" id="pdfInput" accept="application/pdf" />
-  <br><br>
+  <div class="drop-zone" id="dropZone">
+    Arraste o PDF aqui<br>ou clique para selecionar
+  </div>
 
-  <input type="text" id="referencias" 
-         placeholder="Ex: pg1=8,pg2=3,pg4=7" size="40"/>
-  <br><br>
+  <div class="file-name" id="fileName"></div>
 
-  <button onclick="gerarPDF()">Gerar PDF</button>
+  <input type="text" id="referencias"
+    placeholder="Ex: pg1=8,pg2=3,pg4=7">
 
-  <script>
-    async function gerarPDF() {
-      const input = document.getElementById("pdfInput");
-      const referencias = document.getElementById("referencias").value;
+  <button onclick="gerarPDF()">Gerar Novo PDF</button>
+</div>
 
-      if (!input.files.length) {
-        alert("Selecione um PDF.");
-        return;
-      }
+<input type="file" id="fileInput" accept="application/pdf" hidden>
 
-      const file = input.files[0];
-      const arrayBuffer = await file.arrayBuffer();
+<script>
+let arquivoPDF = null;
 
-      const { PDFDocument } = PDFLib;
-      const pdfOriginal = await PDFDocument.load(arrayBuffer);
-      const novoPdf = await PDFDocument.create();
+const dropZone = document.getElementById("dropZone");
+const fileInput = document.getElementById("fileInput");
+const fileNameDisplay = document.getElementById("fileName");
 
-      const listaPaginas = parseReferencias(referencias);
+dropZone.addEventListener("click", () => fileInput.click());
 
-      for (let paginaIndex of listaPaginas) {
-        if (paginaIndex >= 0 && paginaIndex < pdfOriginal.getPageCount()) {
-          const [paginaCopiada] = await novoPdf.copyPages(pdfOriginal, [paginaIndex]);
-          novoPdf.addPage(paginaCopiada);
-        } else {
-          alert("Página inválida: " + (paginaIndex + 1));
+fileInput.addEventListener("change", (e) => {
+  arquivoPDF = e.target.files[0];
+  mostrarNome();
+});
+
+dropZone.addEventListener("dragover", (e) => {
+  e.preventDefault();
+  dropZone.classList.add("dragover");
+});
+
+dropZone.addEventListener("dragleave", () => {
+  dropZone.classList.remove("dragover");
+});
+
+dropZone.addEventListener("drop", (e) => {
+  e.preventDefault();
+  dropZone.classList.remove("dragover");
+
+  if (e.dataTransfer.files.length) {
+    arquivoPDF = e.dataTransfer.files[0];
+    mostrarNome();
+  }
+});
+
+function mostrarNome() {
+  if (arquivoPDF) {
+    fileNameDisplay.textContent = "Arquivo selecionado: " + arquivoPDF.name;
+  }
+}
+
+function parseReferencias(texto) {
+  const partes = texto.split(",");
+  const resultado = [];
+
+  for (let parte of partes) {
+    parte = parte.trim().toLowerCase();
+
+    if (parte.startsWith("pg") && parte.includes("=")) {
+      const [pagina, quantidade] = parte.split("=");
+
+      const numeroPagina = parseInt(pagina.replace("pg", ""));
+      const qtd = parseInt(quantidade);
+
+      if (!isNaN(numeroPagina) && !isNaN(qtd)) {
+        for (let i = 0; i < qtd; i++) {
+          resultado.push(numeroPagina - 1);
         }
       }
-
-      const pdfBytes = await novoPdf.save();
-
-      const blob = new Blob([pdfBytes], { type: "application/pdf" });
-      const url = URL.createObjectURL(blob);
-
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "pdf_repetido.pdf";
-      a.click();
-
-      URL.revokeObjectURL(url);
     }
+  }
 
-    function parseReferencias(texto) {
-      const partes = texto.split(",");
-      const resultado = [];
+  return resultado;
+}
 
-      for (let parte of partes) {
-        parte = parte.trim().toLowerCase();
+async function gerarPDF() {
+  if (!arquivoPDF) {
+    alert("Selecione um PDF primeiro.");
+    return;
+  }
 
-        if (parte.startsWith("pg") && parte.includes("=")) {
-          const [pagina, quantidade] = parte.split("=");
+  const referencias = document.getElementById("referencias").value;
+  if (!referencias) {
+    alert("Digite as referências.");
+    return;
+  }
 
-          const numeroPagina = parseInt(pagina.replace("pg", ""));
-          const qtd = parseInt(quantidade);
+  const arrayBuffer = await arquivoPDF.arrayBuffer();
 
-          for (let i = 0; i < qtd; i++) {
-            resultado.push(numeroPagina - 1);
-          }
-        }
-      }
+  const { PDFDocument } = PDFLib;
+  const pdfOriginal = await PDFDocument.load(arrayBuffer);
+  const novoPdf = await PDFDocument.create();
 
-      return resultado;
+  const paginas = parseReferencias(referencias);
+
+  for (let index of paginas) {
+    if (index >= 0 && index < pdfOriginal.getPageCount()) {
+      const [paginaCopiada] = await novoPdf.copyPages(pdfOriginal, [index]);
+      novoPdf.addPage(paginaCopiada);
     }
-  </script>
+  }
+
+  const pdfBytes = await novoPdf.save();
+  const blob = new Blob([pdfBytes], { type: "application/pdf" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "pdf_repetido.pdf";
+  a.click();
+
+  URL.revokeObjectURL(url);
+}
+</script>
 
 </body>
 </html>
