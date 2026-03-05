@@ -1,0 +1,92 @@
+[
+  {
+    "id": "caneca-001",
+    "nome": "Caneca Frase - Modelo 01",
+    "categoria": "canecas",
+    "subcategoria": "Frases",
+    "tamanho": "325ml",
+    "material": "Cerâmica",
+    "imagem": "/imagens/produtos/canecas/frases/mockupCanecaFrase01.jpg",
+    "precos": [
+      { "quantidade": 1, "preco": 25.00 },
+      { "quantidade": 6, "preco": 22.00 },
+      { "quantidade": 12, "preco": 19.00 },
+      { "quantidade": 24, "preco": 16.00 }
+    ]
+  },
+  {
+    "id": "caneca-002",
+    "nome": "Caneca Frase - Modelo 02",
+    "categoria": "canecas",
+    "subcategoria": "Frases",
+    "tamanho": "325ml",
+    "material": "Cerâmica",
+    "imagem": "/imagens/produtos/canecas/frases/mockupCanecaFrase02.jpg",
+    "precos": [
+      { "quantidade": 1, "preco": 25.00 },
+      { "quantidade": 6, "preco": 22.00 },
+      { "quantidade": 12, "preco": 19.00 },
+      { "quantidade": 24, "preco": 16.00 }
+    ]
+  },
+  {
+    "id": "caneca-003",
+    "nome": "Caneca Frase - Modelo 03",
+    "categoria": "canecas",
+    "subcategoria": "Frases",
+    "tamanho": "325ml",
+    "material": "Cerâmica",
+    "imagem": "/imagens/produtos/canecas/frases/mockupCanecaFrase03.jpg",
+    "precos": [
+      { "quantidade": 1, "preco": 25.00 },
+      { "quantidade": 6, "preco": 22.00 },
+      { "quantidade": 12, "preco": 19.00 },
+      { "quantidade": 24, "preco": 16.00 }
+    ]
+  },
+  {
+    "id": "caneca-004",
+    "nome": "Caneca Professores - Modelo 01",
+    "categoria": "canecas",
+    "subcategoria": "Dia dos Professores",
+    "tamanho": "325ml",
+    "material": "Cerâmica",
+    "imagem": "/imagens/produtos/canecas/professores/mockup01.jpg",
+    "precos": [
+      { "quantidade": 1, "preco": 27.00 },
+      { "quantidade": 6, "preco": 24.00 },
+      { "quantidade": 12, "preco": 21.00 },
+      { "quantidade": 24, "preco": 18.00 }
+    ]
+  },
+  {
+    "id": "caneca-005",
+    "nome": "Caneca Professores - Modelo 02",
+    "categoria": "canecas",
+    "subcategoria": "Dia dos Professores",
+    "tamanho": "325ml",
+    "material": "Cerâmica",
+    "imagem": "/imagens/produtos/canecas/professores/mockup02.jpg",
+    "precos": [
+      { "quantidade": 1, "preco": 27.00 },
+      { "quantidade": 6, "preco": 24.00 },
+      { "quantidade": 12, "preco": 21.00 },
+      { "quantidade": 24, "preco": 18.00 }
+    ]
+  },
+  {
+    "id": "caneca-006",
+    "nome": "Caneca Namorados - Modelo 01",
+    "categoria": "canecas",
+    "subcategoria": "Dia dos Namorados",
+    "tamanho": "325ml",
+    "material": "Cerâmica",
+    "imagem": "/imagens/produtos/canecas/namorados/mockup01.jpg",
+    "precos": [
+      { "quantidade": 1, "preco": 28.00 },
+      { "quantidade": 2, "preco": 50.00 },
+      { "quantidade": 6, "preco": 24.00 },
+      { "quantidade": 12, "preco": 21.00 }
+    ]
+  }
+]

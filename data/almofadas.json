@@ -1,0 +1,46 @@
+[
+  {
+    "id": "almofada-001",
+    "nome": "Almofada Personalizada 30x30",
+    "categoria": "almofadas",
+    "subcategoria": "Almofadas",
+    "tamanho": "30x30cm",
+    "material": "Oxford com enchimento",
+    "imagem": "/imagens/produtos/almofadas/mockupAlmofada01.jpg",
+    "precos": [
+      { "quantidade": 1, "preco": 35.00 },
+      { "quantidade": 6, "preco": 30.00 },
+      { "quantidade": 12, "preco": 26.00 },
+      { "quantidade": 24, "preco": 22.00 }
+    ]
+  },
+  {
+    "id": "almofada-002",
+    "nome": "Almofada Personalizada 40x40",
+    "categoria": "almofadas",
+    "subcategoria": "Almofadas",
+    "tamanho": "40x40cm",
+    "material": "Oxford com enchimento",
+    "imagem": "/imagens/produtos/almofadas/mockupAlmofada02.jpg",
+    "precos": [
+      { "quantidade": 1, "preco": 45.00 },
+      { "quantidade": 6, "preco": 40.00 },
+      { "quantidade": 12, "preco": 35.00 },
+      { "quantidade": 24, "preco": 30.00 }
+    ]
+  },
+  {
+    "id": "almofada-003",
+    "nome": "Almofada Coração Personalizada",
+    "categoria": "almofadas",
+    "subcategoria": "Especiais",
+    "tamanho": "30x30cm",
+    "material": "Oxford com enchimento",
+    "imagem": "/imagens/produtos/almofadas/mockupAlmofadaCoracao.jpg",
+    "precos": [
+      { "quantidade": 1, "preco": 42.00 },
+      { "quantidade": 6, "preco": 37.00 },
+      { "quantidade": 12, "preco": 32.00 }
+    ]
+  }
+]

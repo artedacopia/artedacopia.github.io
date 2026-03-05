@@ -1,0 +1,47 @@
+[
+  {
+    "id": "camisa-001",
+    "nome": "Camiseta Personalizada",
+    "categoria": "camisas",
+    "subcategoria": "Camisetas",
+    "tamanho": "P / M / G / GG / XGG",
+    "material": "100% Algodão",
+    "imagem": "/imagens/produtos/camisas/mockupCamisa01.jpg",
+    "precos": [
+      { "quantidade": 1, "preco": 45.00 },
+      { "quantidade": 6, "preco": 40.00 },
+      { "quantidade": 12, "preco": 35.00 },
+      { "quantidade": 24, "preco": 30.00 }
+    ]
+  },
+  {
+    "id": "camisa-002",
+    "nome": "Abadá Personalizado",
+    "categoria": "camisas",
+    "subcategoria": "Abadás",
+    "tamanho": "P / M / G / GG / XGG",
+    "material": "Poliéster",
+    "imagem": "/imagens/produtos/camisas/abadas/mockupAbada01.jpg",
+    "precos": [
+      { "quantidade": 12, "preco": 38.00 },
+      { "quantidade": 24, "preco": 34.00 },
+      { "quantidade": 50, "preco": 30.00 },
+      { "quantidade": 100, "preco": 26.00 }
+    ]
+  },
+  {
+    "id": "camisa-003",
+    "nome": "Camiseta Polo Personalizada",
+    "categoria": "camisas",
+    "subcategoria": "Camisetas",
+    "tamanho": "P / M / G / GG",
+    "material": "Piquet",
+    "imagem": "/imagens/produtos/camisas/mockupPolo01.jpg",
+    "precos": [
+      { "quantidade": 1, "preco": 65.00 },
+      { "quantidade": 6, "preco": 58.00 },
+      { "quantidade": 12, "preco": 50.00 },
+      { "quantidade": 24, "preco": 44.00 }
+    ]
+  }
+]

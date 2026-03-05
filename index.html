@@ -1,56 +1,122 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arte da Cópia</title>
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="/styles/header.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arte da Cópia — Gráfica & Personalização</title>
+  <meta name="description" content="Canecas, camisas e almofadas personalizadas com alta qualidade. Arte da Cópia — Natal/RN.">
+  <link rel="stylesheet" href="/css/main.css">
+  <script>
+    // Apply theme before paint to prevent flash
+    (function(){
+      const t = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
-
 <body>
-    <header id="header"><!-- O CONTEÚDO SERÁ INJETADO VIA JS PARA FÁCIL MANUTENÇÃO --></header>
 
-    <main id="index">
-        <section>
-            <article id="info">
-                <div class="info-box">
-                    <span class="material-icons">star</span><br>
-                    <h3>Alta Qualidade</h3>
-                    <p>Produtos e materiais de<br> alta qualidade.</p>
-                </div>
-                <div class="info-box">
-                    <span class="material-icons">credit_card</span><br>
-                    <h3>Formas de Pagamento</h3>
-                    <p>Aceitamos pagamentos em Dinheiro, Pix,<br> Cartões de Crédito e Débito</p>
-                </div>
-                <div class="info-box">
-                    <span class="material-icons">location_on</span><br>
-                    <h3>Endereço</h3>
-                    <p>Av. Boa Sorte, nº720A<br> em frente ao Comercial JM, próximo ao restaurante da bisteca. <br> <br>
-                        <a href="https://maps.app.goo.gl/vC4z22yvw3H7P2P2A">Clique para abrir no mapa!</a>
-                    </p>
-                </div>
-            </article>
-            <article id="produtos">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>                
-            </article>
-        </section>
-        <aside id="aside-fixo">
+  <header id="header"></header>
 
-        </aside>
-    </main>
-    <footer>
-        Desenvolvido por Marcos Rocha
-    </footer>
+  <main id="home">
+
+    <!-- ── Hero ── -->
+    <section class="hero">
+      <div class="hero-text">
+        <span class="tag">✦ Personalização de Qualidade</span>
+        <h1>Sua <span>ideia</span> impressa com perfeição</h1>
+        <p>
+          Canecas, camisas, almofadas e muito mais — personalizamos para você,
+          sua empresa ou seu evento com alta qualidade e agilidade.
+        </p>
+        <div class="hero-actions">
+          <a href="/servicos.html" class="btn-primary">
+            Ver Produtos
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="https://wa.me/5584988334461" target="_blank" rel="noopener" class="btn-secondary">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Solicitar Orçamento
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-img-box">
+          <img src="/imagens/produtos/canecas/frases/mockupCanecaFrase01.jpg" alt="Caneca personalizada" onerror="this.parentElement.innerHTML='<span class=hero-img-placeholder>☕</span>'">
+        </div>
+        <div class="hero-img-box">
+          <img src="/imagens/produtos/camisas/mockupCamisa01.jpg" alt="Camisa personalizada" onerror="this.parentElement.innerHTML='<span class=hero-img-placeholder>👕</span>'">
+        </div>
+        <div class="hero-img-box">
+          <img src="/imagens/produtos/almofadas/mockupAlmofada01.jpg" alt="Almofada personalizada" onerror="this.parentElement.innerHTML='<span class=hero-img-placeholder>🛋️</span>'">
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Info Cards ── -->
+    <section class="info-section">
+      <h2>Por que escolher a Arte da Cópia?</h2>
+      <div class="info-grid">
+
+        <div class="info-card">
+          <div class="info-card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h3>Alta Qualidade</h3>
+          <p>Produtos e materiais selecionados para garantir durabilidade e acabamento impecável.</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/></svg>
+          </div>
+          <h3>Formas de Pagamento</h3>
+          <p>Aceitamos Pix, Dinheiro, Cartões de Crédito e Débito — facilidade para você.</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h3>Endereço</h3>
+          <p>Av. Boa Sorte, nº 720A — em frente ao Comercial JM, próximo ao restaurante da bisteca.</p>
+          <a href="https://maps.app.goo.gl/vC4z22yvw3H7P2P2A" target="_blank" rel="noopener">
+            Ver no mapa
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Products preview ── -->
+    <section class="products-preview">
+      <div class="section-header">
+        <h2>Nossos Produtos</h2>
+        <a href="/servicos.html">
+          Ver todos
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="category-chips">
+        <a href="/servicos.html?cat=canecas" class="chip active">☕ Canecas</a>
+        <a href="/servicos.html?cat=camisas" class="chip">👕 Camisas</a>
+        <a href="/servicos.html?cat=almofadas" class="chip">🛋️ Almofadas</a>
+        <a href="/servicos.html?cat=todos" class="chip">✨ Todos</a>
+      </div>
+
+      <p style="color:var(--text-muted); font-size:.9rem; text-align:center; padding:48px 0;">
+        Acesse a página de <a href="/servicos.html" style="color:var(--accent); font-weight:600;">Serviços</a>
+        para explorar todos os nossos produtos com filtros e pesquisa.
+      </p>
+    </section>
+
+  </main>
+
+  <footer></footer>
+
+  <script src="/js/main.js"></script>
 </body>
-
-    <!-- SCRIPTS -->
-    <script src="/scripts/script.js"></script>
-
 </html>
