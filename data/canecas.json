@@ -8,10 +8,9 @@
     "material": "Cerâmica",
     "imagem": "/imagens/produtos/canecas/frases/mockupCanecaFrase01.jpg",
     "precos": [
-      { "quantidade": 1, "preco": 25.00 },
-      { "quantidade": 6, "preco": 22.00 },
-      { "quantidade": 12, "preco": 19.00 },
-      { "quantidade": 24, "preco": 16.00 }
+      { "quantidade": 1, "preco": 30.00 },
+      { "quantidade": 10, "preco": 27.50 },
+      { "quantidade": 20, "preco": 25.00 }
     ]
   },
   {
@@ -23,10 +22,9 @@
     "material": "Cerâmica",
     "imagem": "/imagens/produtos/canecas/frases/mockupCanecaFrase02.jpg",
     "precos": [
-      { "quantidade": 1, "preco": 25.00 },
-      { "quantidade": 6, "preco": 22.00 },
-      { "quantidade": 12, "preco": 19.00 },
-      { "quantidade": 24, "preco": 16.00 }
+      { "quantidade": 1, "preco": 30.00 },
+      { "quantidade": 10, "preco": 27.50 },
+      { "quantidade": 20, "preco": 25.00 }
     ]
   },
   {
@@ -38,10 +36,9 @@
     "material": "Cerâmica",
     "imagem": "/imagens/produtos/canecas/frases/mockupCanecaFrase03.jpg",
     "precos": [
-      { "quantidade": 1, "preco": 25.00 },
-      { "quantidade": 6, "preco": 22.00 },
-      { "quantidade": 12, "preco": 19.00 },
-      { "quantidade": 24, "preco": 16.00 }
+      { "quantidade": 1, "preco": 30.00 },
+      { "quantidade": 10, "preco": 27.50 },
+      { "quantidade": 20, "preco": 25.00 }
     ]
   },
   {
@@ -53,10 +50,9 @@
     "material": "Cerâmica",
     "imagem": "/imagens/produtos/canecas/professores/mockup01.jpg",
     "precos": [
-      { "quantidade": 1, "preco": 27.00 },
-      { "quantidade": 6, "preco": 24.00 },
-      { "quantidade": 12, "preco": 21.00 },
-      { "quantidade": 24, "preco": 18.00 }
+      { "quantidade": 1, "preco": 30.00 },
+      { "quantidade": 10, "preco": 27.50 },
+      { "quantidade": 20, "preco": 25.00 }
     ]
   },
   {
@@ -68,10 +64,9 @@
     "material": "Cerâmica",
     "imagem": "/imagens/produtos/canecas/professores/mockup02.jpg",
     "precos": [
-      { "quantidade": 1, "preco": 27.00 },
-      { "quantidade": 6, "preco": 24.00 },
-      { "quantidade": 12, "preco": 21.00 },
-      { "quantidade": 24, "preco": 18.00 }
+      { "quantidade": 1, "preco": 30.00 },
+      { "quantidade": 10, "preco": 27.50 },
+      { "quantidade": 20, "preco": 25.00 }
     ]
   },
   {
@@ -83,10 +78,9 @@
     "material": "Cerâmica",
     "imagem": "/imagens/produtos/canecas/namorados/mockup01.jpg",
     "precos": [
-      { "quantidade": 1, "preco": 28.00 },
-      { "quantidade": 2, "preco": 50.00 },
-      { "quantidade": 6, "preco": 24.00 },
-      { "quantidade": 12, "preco": 21.00 }
+      { "quantidade": 1, "preco": 30.00 },
+      { "quantidade": 10, "preco": 27.50 },
+      { "quantidade": 20, "preco": 25.00 }
     ]
   }
 ]
