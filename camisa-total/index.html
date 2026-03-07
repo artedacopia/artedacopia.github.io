@@ -605,46 +605,74 @@
     ============================== */
     .lightbox-overlay {
       position: fixed; inset: 0; z-index: 500;
-      background: rgba(0, 0, 0, 0.0);
+      background: rgba(0, 0, 0, 0);
       backdrop-filter: blur(0px);
       -webkit-backdrop-filter: blur(0px);
       display: flex; align-items: center; justify-content: center;
-      padding: 24px;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s ease, background 0.3s ease, backdrop-filter 0.3s ease;
+      transition: opacity 0.32s ease, background 0.32s ease, backdrop-filter 0.32s ease;
     }
     .lightbox-overlay.open {
       opacity: 1;
       pointer-events: auto;
-      background: rgba(0, 0, 0, 0.82);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
     }
 
-    .lightbox-inner {
+    /* Área de conteúdo (imagem + legenda) */
+    .lightbox-stage {
       position: relative;
-      max-width: 90vw;
-      max-height: 88vh;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Track que desliza horizontalmente */
+    .lightbox-track {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      will-change: transform;
+      transition: transform 0.38s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+    .lightbox-track.dragging {
+      transition: none; /* remove transição durante arrasto */
+    }
+
+    /* Cada slide do lightbox */
+    .lightbox-slide {
+      flex: 0 0 100%;
+      height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+      padding: 64px 72px 40px;
       gap: 14px;
-      transform: scale(0.93);
-      transition: transform 0.3s cubic-bezier(0.34, 1.3, 0.64, 1);
-    }
-    .lightbox-overlay.open .lightbox-inner {
-      transform: scale(1);
+      box-sizing: border-box;
     }
 
     .lightbox-img {
       display: block;
-      max-width: 90vw;
-      max-height: 78vh;
+      max-width: 100%;
+      max-height: calc(88vh - 80px);
       width: auto; height: auto;
       border-radius: 12px;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.55);
       object-fit: contain;
+      transform: scale(0.93);
+      transition: transform 0.32s cubic-bezier(0.34, 1.3, 0.64, 1);
+      user-select: none;
+      pointer-events: none;
+    }
+    .lightbox-overlay.open .lightbox-img {
+      transform: scale(1);
     }
 
     .lightbox-caption {
@@ -657,22 +685,40 @@
       max-width: 560px;
     }
 
+    /* Botão fechar */
     .lightbox-close {
       position: fixed; top: 20px; right: 24px;
       width: 42px; height: 42px; border-radius: 50%;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
       color: #fff; font-size: 1.1rem; line-height: 1;
       cursor: pointer; display: flex; align-items: center; justify-content: center;
       transition: background 0.2s, transform 0.2s;
-      z-index: 501;
+      z-index: 502;
     }
-    .lightbox-close:hover {
-      background: rgba(255,255,255,0.2);
-      transform: scale(1.1);
+    .lightbox-close:hover { background: rgba(255,255,255,0.22); transform: scale(1.1); }
+
+    /* Setas de navegação */
+    .lightbox-arrow {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      width: 48px; height: 48px; border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #fff; font-size: 1.2rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, transform 0.2s;
+      z-index: 502;
+    }
+    .lightbox-arrow:hover { background: rgba(255,255,255,0.22); }
+    .lightbox-arrow:disabled { opacity: 0.2; pointer-events: none; }
+    .lightbox-arrow.prev { left: 20px; }
+    .lightbox-arrow.next { right: 20px; }
+    @media (max-width: 600px) {
+      .lightbox-arrow { display: none; }
+      .lightbox-slide { padding: 56px 16px 32px; }
     }
 
-    /* Cursor pointer nas imagens da galeria */
+    /* Cursor nas imagens da galeria */
     .gallery-slide img { cursor: zoom-in; }
 
   </style>
@@ -995,7 +1041,8 @@
       img.src = slide.src;
       img.alt = slide.legenda || '';
       img.loading = 'lazy';
-      img.addEventListener('click', () => openLightbox(slide.src, slide.legenda || ''));
+      const slideIndex = slides.indexOf(slide);
+      img.addEventListener('click', () => { if (window.lightbox) window.lightbox.open(slideIndex); });
       img.onerror = () => {
         s.innerHTML = `
           <div class="gallery-placeholder">
@@ -1026,6 +1073,11 @@
 
   trackOuter.appendChild(track);
   wrap.appendChild(trackOuter);
+
+  // Passa todos os slides para o lightbox (aguarda o script estar pronto)
+  requestAnimationFrame(function () {
+    if (window.lightbox) window.lightbox.build(slides);
+  });
 
   // ── nav ──
   const nav = document.createElement('div');
@@ -1104,9 +1156,10 @@
 <!-- LIGHTBOX -->
 <div id="lightbox" class="lightbox-overlay" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
   <button class="lightbox-close" id="lightbox-close" aria-label="Fechar">✕</button>
-  <div class="lightbox-inner">
-    <img class="lightbox-img" id="lightbox-img" src="" alt="" />
-    <p class="lightbox-caption" id="lightbox-caption"></p>
+  <button class="lightbox-arrow prev" id="lightbox-prev" aria-label="Anterior">←</button>
+  <button class="lightbox-arrow next" id="lightbox-next" aria-label="Próximo">→</button>
+  <div class="lightbox-stage" id="lightbox-stage">
+    <div class="lightbox-track" id="lightbox-track"></div>
   </div>
 </div>
 
@@ -1128,17 +1181,63 @@
 <script>
 (function () {
   var overlay  = document.getElementById('lightbox');
-  var lbImg    = document.getElementById('lightbox-img');
-  var lbCaption = document.getElementById('lightbox-caption');
+  var track    = document.getElementById('lightbox-track');
   var btnClose = document.getElementById('lightbox-close');
+  var btnPrev  = document.getElementById('lightbox-prev');
+  var btnNext  = document.getElementById('lightbox-next');
 
-  function openLightbox(src, caption) {
-    lbImg.src = src;
-    lbImg.alt = caption;
-    lbCaption.textContent = caption;
-    lbCaption.style.display = caption ? 'block' : 'none';
+  var slides   = []; // [{src, legenda}] — preenchido pelo gallery script
+  var current  = 0;
+
+  // ── Constrói os slides do lightbox ──────────────────────────────
+  function buildSlides(data) {
+    slides = data;
+    track.innerHTML = '';
+    data.forEach(function (slide) {
+      var div = document.createElement('div');
+      div.className = 'lightbox-slide';
+
+      var img = document.createElement('img');
+      img.className = 'lightbox-img';
+      img.src = slide.src;
+      img.alt = slide.legenda || '';
+      div.appendChild(img);
+
+      if (slide.legenda) {
+        var cap = document.createElement('p');
+        cap.className = 'lightbox-caption';
+        cap.textContent = slide.legenda;
+        div.appendChild(cap);
+      }
+
+      track.appendChild(div);
+    });
+  }
+
+  // ── Navega para o índice i ───────────────────────────────────────
+  function goTo(i) {
+    current = Math.max(0, Math.min(i, slides.length - 1));
+    track.classList.remove('dragging');
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    btnPrev.disabled = current === 0;
+    btnNext.disabled = current === slides.length - 1;
+  }
+
+  // ── Abre o lightbox no índice clicado ───────────────────────────
+  function openLightbox(index) {
+    current = index;
+    track.style.transition = 'none';
+    track.style.transform  = 'translateX(-' + (current * 100) + '%)';
+    btnPrev.disabled = current === 0;
+    btnNext.disabled = current === slides.length - 1;
+
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
+
+    // Reativa a transição no próximo frame
+    requestAnimationFrame(function () {
+      track.style.transition = '';
+    });
   }
 
   function closeLightbox() {
@@ -1146,19 +1245,66 @@
     document.body.style.overflow = '';
   }
 
-  // Fecha ao clicar no fundo ou no botão ✕
+  // ── Botões de seta ───────────────────────────────────────────────
+  btnPrev.addEventListener('click', function () { goTo(current - 1); });
+  btnNext.addEventListener('click', function () { goTo(current + 1); });
+
+  // ── Fechar ───────────────────────────────────────────────────────
   btnClose.addEventListener('click', closeLightbox);
   overlay.addEventListener('click', function (e) {
-    if (e.target === overlay) closeLightbox();
+    if (e.target === overlay || e.target.id === 'lightbox-stage') closeLightbox();
   });
 
-  // Fecha com tecla Escape
+  // ── Teclado ──────────────────────────────────────────────────────
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeLightbox();
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'Escape')     closeLightbox();
+    if (e.key === 'ArrowLeft')  goTo(current - 1);
+    if (e.key === 'ArrowRight') goTo(current + 1);
   });
 
-  // Expõe para o gallery script
-  window.openLightbox = openLightbox;
+  // ── Swipe touch com arrasto suave ────────────────────────────────
+  var touchStartX  = 0;
+  var touchStarted = false;
+  var baseOffset   = 0;
+
+  track.addEventListener('touchstart', function (e) {
+    touchStartX  = e.touches[0].clientX;
+    touchStarted = true;
+    baseOffset   = current * 100; // em %
+    track.classList.add('dragging');
+  }, { passive: true });
+
+  track.addEventListener('touchmove', function (e) {
+    if (!touchStarted) return;
+    var diff   = touchStartX - e.touches[0].clientX;
+    var pct    = (diff / window.innerWidth) * 100;
+    var offset = baseOffset + pct;
+
+    // Resistência nas bordas
+    var min = 0;
+    var max = (slides.length - 1) * 100;
+    if (offset < min) offset = min + (offset - min) * 0.25;
+    if (offset > max) offset = max + (offset - max) * 0.25;
+
+    track.style.transform = 'translateX(-' + offset + '%)';
+  }, { passive: true });
+
+  track.addEventListener('touchend', function (e) {
+    if (!touchStarted) return;
+    touchStarted = false;
+    track.classList.remove('dragging');
+
+    var diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      goTo(diff > 0 ? current + 1 : current - 1);
+    } else {
+      goTo(current); // volta para o slide atual com animação
+    }
+  }, { passive: true });
+
+  // ── Expõe para o gallery script ──────────────────────────────────
+  window.lightbox = { open: openLightbox, build: buildSlides };
 })();
 </script>
 
