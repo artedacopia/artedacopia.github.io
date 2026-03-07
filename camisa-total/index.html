@@ -315,22 +315,27 @@
       transition: transform 0.55s cubic-bezier(0.77, 0, 0.175, 1);
       will-change: transform;
     }
+    .gallery-track.dragging {
+      transition: none;
+    }
     .gallery-slide { flex: 0 0 100%; height: 100%; position: relative; overflow: hidden; }
     .gallery-slide img {
       width: 100%; height: 100%; object-fit: cover; display: block;
       transition: transform 0.6s ease;
+      cursor: zoom-in;
     }
     .gallery-slide:hover img { transform: scale(1.02); }
-    .gallery-slide::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%);
-      pointer-events: none;
-    }
-    .slide-caption {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 20px 28px; z-index: 2;
-      font-size: 0.88rem; color: rgba(255,255,255,0.72);
-      font-style: italic; font-weight: 300;
+
+    /* Legenda abaixo da imagem — elemento único atualizado por JS */
+    .gallery-caption-area {
+      min-height: 28px;
+      padding: 12px 4px 0;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      font-style: italic;
+      font-weight: 300;
+      text-align: center;
+      transition: opacity 0.2s;
     }
     .gallery-placeholder {
       width: 100%; height: 100%;
@@ -600,12 +605,13 @@
       .fab-wrap { bottom: 20px; right: 16px; }
       .tooltip-text { font-size: 0.76rem; padding: 8px 11px; }
     }
+
     /* ==============================
        LIGHTBOX
     ============================== */
     .lightbox-overlay {
       position: fixed; inset: 0; z-index: 500;
-      background: rgba(0, 0, 0, 0);
+      background: rgba(0,0,0,0);
       backdrop-filter: blur(0px);
       -webkit-backdrop-filter: blur(0px);
       display: flex; align-items: center; justify-content: center;
@@ -616,76 +622,47 @@
     .lightbox-overlay.open {
       opacity: 1;
       pointer-events: auto;
-      background: rgba(0, 0, 0, 0.55);
+      background: rgba(0,0,0,0.55);
       backdrop-filter: blur(3px);
       -webkit-backdrop-filter: blur(3px);
     }
-
-    /* Área de conteúdo (imagem + legenda) */
     .lightbox-stage {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
       overflow: hidden;
     }
-
-    /* Track que desliza horizontalmente */
     .lightbox-track {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      height: 100%;
+      display: flex; align-items: center;
+      width: 100%; height: 100%;
       will-change: transform;
       transition: transform 0.38s cubic-bezier(0.77, 0, 0.175, 1);
     }
-    .lightbox-track.dragging {
-      transition: none; /* remove transição durante arrasto */
-    }
-
-    /* Cada slide do lightbox */
+    .lightbox-track.dragging { transition: none; }
     .lightbox-slide {
-      flex: 0 0 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 64px 72px 40px;
-      gap: 14px;
+      flex: 0 0 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 64px 72px 40px; gap: 14px;
       box-sizing: border-box;
     }
-
     .lightbox-img {
       display: block;
-      max-width: 100%;
-      max-height: calc(88vh - 80px);
+      max-width: 100%; max-height: calc(88vh - 80px);
       width: auto; height: auto;
       border-radius: 12px;
       box-shadow: 0 24px 80px rgba(0,0,0,0.55);
       object-fit: contain;
       transform: scale(0.93);
       transition: transform 0.32s cubic-bezier(0.34, 1.3, 0.64, 1);
-      user-select: none;
-      pointer-events: none;
+      user-select: none; pointer-events: none;
     }
-    .lightbox-overlay.open .lightbox-img {
-      transform: scale(1);
-    }
-
+    .lightbox-overlay.open .lightbox-img { transform: scale(1); }
     .lightbox-caption {
       font-family: var(--font-body);
-      font-size: 0.86rem;
-      color: rgba(255,255,255,0.65);
-      font-style: italic;
-      font-weight: 300;
-      text-align: center;
-      max-width: 560px;
+      font-size: 0.86rem; color: rgba(255,255,255,0.65);
+      font-style: italic; font-weight: 300;
+      text-align: center; max-width: 560px;
     }
-
-    /* Botão fechar */
     .lightbox-close {
       position: fixed; top: 20px; right: 24px;
       width: 42px; height: 42px; border-radius: 50%;
@@ -693,12 +670,9 @@
       border: 1px solid rgba(255,255,255,0.18);
       color: #fff; font-size: 1.1rem; line-height: 1;
       cursor: pointer; display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s, transform 0.2s;
-      z-index: 502;
+      transition: background 0.2s, transform 0.2s; z-index: 502;
     }
     .lightbox-close:hover { background: rgba(255,255,255,0.22); transform: scale(1.1); }
-
-    /* Setas de navegação */
     .lightbox-arrow {
       position: fixed; top: 50%; transform: translateY(-50%);
       width: 48px; height: 48px; border-radius: 50%;
@@ -706,21 +680,16 @@
       border: 1px solid rgba(255,255,255,0.18);
       color: #fff; font-size: 1.2rem; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s, transform 0.2s;
-      z-index: 502;
+      transition: background 0.2s; z-index: 502;
     }
     .lightbox-arrow:hover { background: rgba(255,255,255,0.22); }
     .lightbox-arrow:disabled { opacity: 0.2; pointer-events: none; }
-    .lightbox-arrow.prev { left: 20px; }
-    .lightbox-arrow.next { right: 20px; }
+    .lightbox-arrow.lb-prev { left: 20px; }
+    .lightbox-arrow.lb-next { right: 20px; }
     @media (max-width: 600px) {
       .lightbox-arrow { display: none; }
       .lightbox-slide { padding: 56px 16px 32px; }
     }
-
-    /* Cursor nas imagens da galeria */
-    .gallery-slide img { cursor: zoom-in; }
-
   </style>
 </head>
 <body>
@@ -1032,7 +1001,7 @@
   const track = document.createElement('div');
   track.className = 'gallery-track';
 
-  slides.forEach(slide => {
+  slides.forEach((slide, idx) => {
     const s = document.createElement('div');
     s.className = 'gallery-slide';
 
@@ -1041,31 +1010,18 @@
       img.src = slide.src;
       img.alt = slide.legenda || '';
       img.loading = 'lazy';
-      const slideIndex = slides.indexOf(slide);
-      img.addEventListener('click', () => { if (window.lightbox) window.lightbox.open(slideIndex); });
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', () => { if (window.lightbox) window.lightbox.open(idx); });
       img.onerror = () => {
         s.innerHTML = `
           <div class="gallery-placeholder">
             <span class="ph-icon">🖼️</span>
             <span class="ph-text">${slide.src}</span>
           </div>`;
-        if (slide.legenda) {
-          const cap = document.createElement('div');
-          cap.className = 'slide-caption';
-          cap.textContent = slide.legenda;
-          s.appendChild(cap);
-        }
       };
       s.appendChild(img);
     } else {
       s.innerHTML = `<div class="gallery-placeholder"><span class="ph-icon">🖼️</span></div>`;
-    }
-
-    if (slide.legenda) {
-      const cap = document.createElement('div');
-      cap.className = 'slide-caption';
-      cap.textContent = slide.legenda;
-      s.appendChild(cap);
     }
 
     track.appendChild(s);
@@ -1074,10 +1030,10 @@
   trackOuter.appendChild(track);
   wrap.appendChild(trackOuter);
 
-  // Passa todos os slides para o lightbox (aguarda o script estar pronto)
-  requestAnimationFrame(function () {
-    if (window.lightbox) window.lightbox.build(slides);
-  });
+  // ── legenda abaixo da imagem (elemento único, atualizado na navegação) ──
+  const captionArea = document.createElement('div');
+  captionArea.className = 'gallery-caption-area';
+  wrap.appendChild(captionArea);
 
   // ── nav ──
   const nav = document.createElement('div');
@@ -1118,13 +1074,15 @@
   nav.appendChild(counter);
   wrap.appendChild(nav);
 
-  // ── logic ──
+  // ── lógica ──
   function update() {
+    track.classList.remove('dragging');
     track.style.transform = `translateX(-${current * 100}%)`;
     dotEls.forEach((d, i) => d.classList.toggle('active', i === current));
     btnPrev.disabled = current === 0;
     btnNext.disabled = current === total - 1;
     counter.innerHTML = `<b>${current + 1}</b> / ${total}`;
+    captionArea.textContent = slides[current].legenda || '';
   }
 
   function goTo(i) {
@@ -1135,18 +1093,50 @@
   btnPrev.addEventListener('click', () => goTo(current - 1));
   btnNext.addEventListener('click', () => goTo(current + 1));
 
-  // swipe
-  let startX = 0;
-  trackOuter.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  // ── swipe suave com arrasto em tempo real ──
+  let touchStartX  = 0;
+  let touchStarted = false;
+  let baseOffset   = 0;
+
+  trackOuter.addEventListener('touchstart', e => {
+    touchStartX  = e.touches[0].clientX;
+    touchStarted = true;
+    baseOffset   = current * 100;
+    track.classList.add('dragging');
+  }, { passive: true });
+
+  trackOuter.addEventListener('touchmove', e => {
+    if (!touchStarted) return;
+    const diff   = touchStartX - e.touches[0].clientX;
+    const pct    = (diff / trackOuter.offsetWidth) * 100;
+    let   offset = baseOffset + pct;
+    // resistência nas bordas
+    if (offset < 0)               offset = offset * 0.25;
+    if (offset > (total - 1) * 100) offset = (total - 1) * 100 + (offset - (total - 1) * 100) * 0.25;
+    track.style.transform = `translateX(-${offset}%)`;
+  }, { passive: true });
+
   trackOuter.addEventListener('touchend', e => {
-    const diff = startX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+    if (!touchStarted) return;
+    touchStarted = false;
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      goTo(diff > 0 ? current + 1 : current - 1);
+    } else {
+      goTo(current); // snap de volta com animação
+    }
+  }, { passive: true });
+
+  // ── teclado ──
+  document.addEventListener('keydown', e => {
+    if (document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'ArrowLeft')  goTo(current - 1);
+    if (e.key === 'ArrowRight') goTo(current + 1);
   });
 
-  // keyboard
-  document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft') goTo(current - 1);
-    if (e.key === 'ArrowRight') goTo(current + 1);
+  // ── passa slides ao lightbox ──
+  requestAnimationFrame(() => {
+    if (window.lightbox) window.lightbox.build(slides);
   });
 
   update();
@@ -1156,8 +1146,8 @@
 <!-- LIGHTBOX -->
 <div id="lightbox" class="lightbox-overlay" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
   <button class="lightbox-close" id="lightbox-close" aria-label="Fechar">✕</button>
-  <button class="lightbox-arrow prev" id="lightbox-prev" aria-label="Anterior">←</button>
-  <button class="lightbox-arrow next" id="lightbox-next" aria-label="Próximo">→</button>
+  <button class="lightbox-arrow lb-prev" id="lightbox-prev" aria-label="Anterior">←</button>
+  <button class="lightbox-arrow lb-next" id="lightbox-next" aria-label="Próximo">→</button>
   <div class="lightbox-stage" id="lightbox-stage">
     <div class="lightbox-track" id="lightbox-track"></div>
   </div>
@@ -1186,10 +1176,10 @@
   var btnPrev  = document.getElementById('lightbox-prev');
   var btnNext  = document.getElementById('lightbox-next');
 
-  var slides   = []; // [{src, legenda}] — preenchido pelo gallery script
-  var current  = 0;
+  var slides  = [];
+  var current = 0;
 
-  // ── Constrói os slides do lightbox ──────────────────────────────
+  // ── Constrói os slides ───────────────────────────────────────────
   function buildSlides(data) {
     slides = data;
     track.innerHTML = '';
@@ -1223,21 +1213,16 @@
     btnNext.disabled = current === slides.length - 1;
   }
 
-  // ── Abre o lightbox no índice clicado ───────────────────────────
+  // ── Abre no índice clicado ───────────────────────────────────────
   function openLightbox(index) {
     current = index;
     track.style.transition = 'none';
     track.style.transform  = 'translateX(-' + (current * 100) + '%)';
     btnPrev.disabled = current === 0;
     btnNext.disabled = current === slides.length - 1;
-
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
-
-    // Reativa a transição no próximo frame
-    requestAnimationFrame(function () {
-      track.style.transition = '';
-    });
+    requestAnimationFrame(function () { track.style.transition = ''; });
   }
 
   function closeLightbox() {
@@ -1245,17 +1230,13 @@
     document.body.style.overflow = '';
   }
 
-  // ── Botões de seta ───────────────────────────────────────────────
+  // ── Controles ────────────────────────────────────────────────────
   btnPrev.addEventListener('click', function () { goTo(current - 1); });
   btnNext.addEventListener('click', function () { goTo(current + 1); });
-
-  // ── Fechar ───────────────────────────────────────────────────────
   btnClose.addEventListener('click', closeLightbox);
   overlay.addEventListener('click', function (e) {
     if (e.target === overlay || e.target.id === 'lightbox-stage') closeLightbox();
   });
-
-  // ── Teclado ──────────────────────────────────────────────────────
   document.addEventListener('keydown', function (e) {
     if (!overlay.classList.contains('open')) return;
     if (e.key === 'Escape')     closeLightbox();
@@ -1263,7 +1244,7 @@
     if (e.key === 'ArrowRight') goTo(current + 1);
   });
 
-  // ── Swipe touch com arrasto suave ────────────────────────────────
+  // ── Swipe com arrasto em tempo real ─────────────────────────────
   var touchStartX  = 0;
   var touchStarted = false;
   var baseOffset   = 0;
@@ -1271,7 +1252,7 @@
   track.addEventListener('touchstart', function (e) {
     touchStartX  = e.touches[0].clientX;
     touchStarted = true;
-    baseOffset   = current * 100; // em %
+    baseOffset   = current * 100;
     track.classList.add('dragging');
   }, { passive: true });
 
@@ -1280,30 +1261,21 @@
     var diff   = touchStartX - e.touches[0].clientX;
     var pct    = (diff / window.innerWidth) * 100;
     var offset = baseOffset + pct;
-
-    // Resistência nas bordas
-    var min = 0;
-    var max = (slides.length - 1) * 100;
-    if (offset < min) offset = min + (offset - min) * 0.25;
+    var max    = (slides.length - 1) * 100;
+    if (offset < 0)   offset = offset * 0.25;
     if (offset > max) offset = max + (offset - max) * 0.25;
-
     track.style.transform = 'translateX(-' + offset + '%)';
   }, { passive: true });
 
   track.addEventListener('touchend', function (e) {
     if (!touchStarted) return;
     touchStarted = false;
-    track.classList.remove('dragging');
-
     var diff = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) {
-      goTo(diff > 0 ? current + 1 : current - 1);
-    } else {
-      goTo(current); // volta para o slide atual com animação
-    }
+    if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+    else goTo(current);
   }, { passive: true });
 
-  // ── Expõe para o gallery script ──────────────────────────────────
+  // ── API exposta para o gallery script ────────────────────────────
   window.lightbox = { open: openLightbox, build: buildSlides };
 })();
 </script>
@@ -1312,21 +1284,24 @@
 <script>
 (function () {
   // ⏱️ AJUSTE AQUI:
-  var DELAY_PARA_APARECER = 20000; // tempo até o balão aparecer (em ms) — 20000 = 20 segundos
-  var TEMPO_VISIVEL       = 5000;  // tempo que o balão fica visível (em ms) — 5000 = 5 segundos
+  var DELAY_PARA_APARECER = 20000; // tempo até aparecer pela 1ª vez (em ms) — 20000 = 20 segundos
+  var TEMPO_VISIVEL       = 5000;  // tempo que o balão fica visível a cada exibição (em ms) — 5000 = 5 segundos
+  var INTERVALO_REPETICAO = 60000; // intervalo entre cada reaparecimento (em ms) — 60000 = 1 minuto
 
-  setTimeout(function () {
+  function mostrarTooltip() {
     var tooltip = document.getElementById('whatsapp-tooltip');
     var btn     = document.getElementById('fab-whatsapp-btn');
-
     tooltip.classList.add('show');
     btn.classList.add('shaking');
-
     setTimeout(function () {
       tooltip.classList.remove('show');
       btn.classList.remove('shaking');
     }, TEMPO_VISIVEL);
+  }
 
+  setTimeout(function () {
+    mostrarTooltip();
+    setInterval(mostrarTooltip, INTERVALO_REPETICAO);
   }, DELAY_PARA_APARECER);
 })();
 </script>
