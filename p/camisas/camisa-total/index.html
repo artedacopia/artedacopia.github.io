@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Camisa Estampa Total — Personalizada</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0d0d0d;
+      --off: #121212;
+      --card: #181818;
+      --border: #262626;
+      --accent: #e8ff3e;
+      --accent2: #ff6b35;
+      --text: #f0f0f0;
+      --muted: #7a7a7a;
+      --font-head: 'Bebas Neue', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ==============================
+       HERO
+    ============================== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 100px 24px 80px;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 90% 55% at 50% -5%, rgba(232,255,62,0.07) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 35% at 90% 90%, rgba(255,107,53,0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-bg-text {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      font-family: var(--font-head);
+      font-size: clamp(12rem, 30vw, 26rem);
+      letter-spacing: -0.02em;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,0.03);
+      white-space: nowrap;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(232,255,62,0.09);
+      border: 1px solid rgba(232,255,62,0.22);
+      color: var(--accent);
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 6px 18px; border-radius: 100px;
+      margin-bottom: 32px;
+      animation: fadeUp 0.6s ease both;
+    }
+    .badge::before { content: '✦'; font-size: 0.58rem; }
+
+    .hero h1 {
+      font-family: var(--font-head);
+      font-size: clamp(3.8rem, 11vw, 9.5rem);
+      line-height: 0.93; letter-spacing: 0.02em; text-transform: uppercase;
+      animation: fadeUp 0.7s 0.1s ease both;
+      position: relative;
+    }
+    .hero h1 span {
+      display: block;
+      -webkit-text-stroke: 1.5px var(--accent);
+      color: transparent;
+    }
+
+    .hero-tags {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+      margin-top: 28px;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+    .hero-tag {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 0.82rem; color: var(--muted);
+    }
+    .hero-tag b { color: var(--text); font-weight: 500; }
+
+    .hero-sub {
+      max-width: 500px; font-size: 1rem; color: var(--muted);
+      margin-top: 24px; font-weight: 300;
+      animation: fadeUp 0.7s 0.25s ease both;
+    }
+    .hero-sub strong { color: var(--text); font-weight: 500; }
+
+    .cta-row {
+      display: flex; gap: 14px; margin-top: 40px;
+      flex-wrap: wrap; justify-content: center;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent); color: var(--black);
+      font-family: var(--font-body); font-size: 0.88rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 15px 36px; border-radius: 4px; text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 36px rgba(232,255,62,0.22);
+    }
+
+    .btn-secondary {
+      display: inline-block; background: transparent;
+      color: var(--text); font-size: 0.88rem; font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 15px 32px; border-radius: 4px;
+      border: 1px solid var(--border); text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-secondary:hover {
+      border-color: rgba(232,255,62,0.3);
+      background: rgba(232,255,62,0.04);
+    }
+
+    .scroll-hint {
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      color: var(--muted); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+      margin-top: 52px;
+      animation: fadeUp 1s 0.9s ease both;
+    }
+    .scroll-hint::after {
+      content: ''; width: 1px; height: 36px;
+      background: linear-gradient(to bottom, var(--muted), transparent);
+      animation: scrollLine 1.8s ease infinite;
+    }
+
+    /* ==============================
+       SECTIONS
+    ============================== */
+    .section { padding: 88px 24px; max-width: 1040px; margin: 0 auto; }
+
+    .s-label {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px;
+    }
+    .s-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+      line-height: 1; letter-spacing: 0.02em; margin-bottom: 48px;
+    }
+
+    /* ==============================
+       USE CASES
+    ============================== */
+    .uses-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    }
+    .use-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 28px 20px 24px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .use-card:hover { border-color: rgba(232,255,62,0.25); transform: translateY(-3px); }
+    .use-card .uc-icon { font-size: 1.8rem; margin-bottom: 14px; }
+    .use-card h3 { font-family: var(--font-head); font-size: 1.3rem; letter-spacing: 0.04em; margin-bottom: 8px; }
+    .use-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+
+    /* ==============================
+       GALLERY
+    ============================== */
+    .gallery-section {
+      padding: 88px 0;
+      background: var(--off);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .gallery-inner { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+    .gallery-wrap { position: relative; margin-top: 40px; }
+
+    .gallery-track-outer {
+      overflow: hidden; border-radius: 16px; position: relative;
+      background: #0a0a0a;
+      aspect-ratio: 16/8; max-height: 520px;
+    }
+    .gallery-track {
+      display: flex; height: 100%;
+      transition: transform 0.55s cubic-bezier(0.77, 0, 0.175, 1);
+      will-change: transform;
+    }
+    .gallery-slide { flex: 0 0 100%; height: 100%; position: relative; overflow: hidden; }
+    .gallery-slide img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.6s ease;
+    }
+    .gallery-slide:hover img { transform: scale(1.02); }
+    .gallery-slide::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .slide-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 20px 28px; z-index: 2;
+      font-size: 0.88rem; color: rgba(255,255,255,0.72);
+      font-style: italic; font-weight: 300;
+    }
+    .gallery-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+      color: var(--muted); font-size: 0.85rem;
+      background: repeating-linear-gradient(45deg, #111 0px, #111 20px, #131313 20px, #131313 40px);
+    }
+    .gallery-placeholder .ph-icon { font-size: 2.5rem; opacity: 0.35; }
+    .gallery-placeholder .ph-text { opacity: 0.45; letter-spacing: 0.06em; font-size: 0.75rem; text-transform: uppercase; }
+
+    .gallery-nav {
+      display: flex; align-items: center; justify-content: space-between; margin-top: 20px;
+    }
+    .gallery-arrows { display: flex; gap: 10px; }
+    .g-arrow {
+      width: 48px; height: 48px; border-radius: 50%;
+      border: 1px solid var(--border); background: var(--card);
+      color: var(--text); font-size: 1.1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+      user-select: none;
+    }
+    .g-arrow:hover { border-color: var(--accent); background: rgba(232,255,62,0.08); transform: scale(1.08); }
+    .g-arrow:active { transform: scale(0.95); }
+    .g-arrow:disabled { opacity: 0.22; pointer-events: none; }
+
+    .gallery-dots { display: flex; gap: 7px; align-items: center; }
+    .g-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--border); cursor: pointer;
+      transition: background 0.2s, width 0.25s; border: none; padding: 0;
+    }
+    .g-dot.active { background: var(--accent); width: 20px; border-radius: 3px; }
+
+    .gallery-counter { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.1em; min-width: 60px; text-align: right; }
+    .gallery-counter b { color: var(--text); }
+
+    .gallery-empty {
+      border: 1px dashed var(--border); border-radius: 16px;
+      padding: 60px 24px; text-align: center;
+      color: var(--muted); font-size: 0.88rem; margin-top: 40px;
+    }
+    .gallery-empty .ge-icon { font-size: 2rem; display: block; margin-bottom: 12px; opacity: 0.4; }
+
+    /* ==============================
+       FABRICS
+    ============================== */
+    .fabrics { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .fabric-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 32px 28px;
+      position: relative; overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .fabric-card:hover { border-color: rgba(232,255,62,0.28); transform: translateY(-3px); }
+    .fabric-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .fabric-card:hover::before { opacity: 1; }
+    .fabric-icon { font-size: 1.9rem; margin-bottom: 16px; }
+    .fabric-name { font-family: var(--font-head); font-size: 1.85rem; letter-spacing: 0.04em; margin-bottom: 8px; }
+    .fabric-desc { font-size: 0.86rem; color: var(--muted); line-height: 1.75; }
+
+    /* ==============================
+       PRICING
+    ============================== */
+    .pricing-section {
+      padding: 88px 24px;
+      background: var(--off);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .pricing-inner { max-width: 1040px; margin: 0 auto; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 48px; }
+
+    .price-card {
+      background: var(--black); border: 1px solid var(--border);
+      border-radius: 16px; padding: 36px 26px; text-align: center;
+      position: relative; transition: border-color 0.2s, transform 0.2s;
+    }
+    .price-card:hover { transform: translateY(-4px); }
+    .price-card.featured {
+      border-color: var(--accent);
+      background: linear-gradient(145deg, #15160a 0%, #0f1000 100%);
+    }
+    .price-card.featured::after {
+      content: 'MAIS POPULAR';
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--accent); color: var(--black);
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.15em;
+      padding: 4px 14px; border-radius: 100px; white-space: nowrap;
+    }
+    .price-qty { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .price-value { font-family: var(--font-head); font-size: 3.6rem; line-height: 1; letter-spacing: 0.02em; }
+    .price-card.featured .price-value { color: var(--accent); }
+    .price-unit { font-size: 0.8rem; color: var(--muted); margin-top: 6px; margin-bottom: 20px; }
+    .price-divider { height: 1px; background: var(--border); margin: 20px 0; }
+    .price-features { list-style: none; text-align: left; font-size: 0.83rem; color: var(--muted); display: flex; flex-direction: column; gap: 10px; }
+    .price-features li::before { content: '— '; color: var(--accent); }
+    .price-features li span { color: var(--text); font-weight: 500; }
+
+    /* ==============================
+       INFO
+    ============================== */
+    .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 48px; }
+    .info-card { border: 1px solid var(--border); border-radius: 12px; padding: 28px 22px; transition: border-color 0.2s; }
+    .info-card:hover { border-color: rgba(232,255,62,0.18); }
+    .info-card .icon { font-size: 1.4rem; margin-bottom: 14px; }
+    .info-card h3 { font-family: var(--font-head); font-size: 1.35rem; letter-spacing: 0.04em; margin-bottom: 8px; }
+    .info-card p { font-size: 0.84rem; color: var(--muted); line-height: 1.75; }
+    .info-card p strong { color: var(--text); font-weight: 500; }
+
+    .note-box {
+      background: rgba(255,107,53,0.06); border: 1px solid rgba(255,107,53,0.18);
+      border-radius: 12px; padding: 26px 30px; margin-top: 40px;
+      display: flex; gap: 18px; align-items: flex-start;
+    }
+    .note-box .note-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+    .note-box p { font-size: 0.86rem; color: #b09080; line-height: 1.8; }
+    .note-box p strong { color: var(--accent2); font-weight: 600; }
+
+    /* ==============================
+       FINAL CTA
+    ============================== */
+    .final-cta { max-width: 1040px; margin: 0 auto; padding: 0 24px 100px; }
+    .final-cta-box {
+      background: linear-gradient(135deg, #131400 0%, #0d0d0d 70%);
+      border: 1px solid rgba(232,255,62,0.14); border-radius: 20px;
+      padding: 64px 48px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .final-cta-box::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(232,255,62,0.35), transparent);
+    }
+    .final-cta-box h2 {
+      font-family: var(--font-head);
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      letter-spacing: 0.02em; line-height: 1.05; margin-bottom: 18px;
+    }
+    .final-cta-box h2 em { font-style: normal; color: var(--accent); }
+    .final-cta-box p { color: var(--muted); font-size: 0.95rem; max-width: 480px; margin: 0 auto 36px; line-height: 1.75; }
+
+    /* ==============================
+       FOOTER
+    ============================== */
+    footer {
+      border-top: 1px solid var(--border); padding: 40px 24px;
+      text-align: center; color: var(--muted); font-size: 0.8rem;
+    }
+    footer strong { color: var(--text); }
+
+    /* ==============================
+       ANIMATIONS
+    ============================== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scrollLine {
+      0%   { opacity: 0; transform: scaleY(0); transform-origin: top; }
+      50%  { opacity: 1; transform: scaleY(1); }
+      100% { opacity: 0; transform: scaleY(1); transform-origin: bottom; }
+    }
+
+    /* ==============================
+       RESPONSIVE
+    ============================== */
+    @media (max-width: 860px) {
+      .uses-grid { grid-template-columns: 1fr 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 360px; margin-left: auto; margin-right: auto; }
+      .info-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .uses-grid, .fabrics, .info-grid { grid-template-columns: 1fr; }
+      .final-cta-box { padding: 40px 24px; }
+      .note-box { flex-direction: column; gap: 12px; }
+      .gallery-track-outer { aspect-ratio: 4/3; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-text">ESTAMPA</div>
+  <div class="badge">Impressão de ponta a ponta</div>
+  <h1>
+    Do jeito
+    <span>que você</span>
+    imaginou
+  </h1>
+  <div class="hero-tags">
+    <span class="hero-tag"><b>Times</b></span>
+    <span class="hero-tag"><b>Empresas</b></span>
+    <span class="hero-tag"><b>Eventos</b></span>
+    <span class="hero-tag"><b>Grupos</b></span>
+    <span class="hero-tag"><b>Família</b></span>
+    <span class="hero-tag"><b>Presente</b></span>
+    <span class="hero-tag"><b>Identidade própria</b></span>
+  </div>
+  <p class="hero-sub">
+    Camisas com <strong>estampa total personalizada</strong> — sua arte, sua ideia, seu estilo. Confeccionadas em <strong>Helanquinha</strong> de qualidade.
+  </p>
+  <div class="cta-row">
+    <a href="#precos" class="btn-primary">Ver preços →</a>
+    <a href="#galeria" class="btn-secondary">Ver exemplos</a>
+  </div>
+  <div class="scroll-hint">role para ver</div>
+</section>
+
+<!-- USOS -->
+<div class="section">
+  <p class="s-label">Para quem é?</p>
+  <h2 class="s-title">Qualquer ocasião,<br/>um resultado único</h2>
+  <div class="uses-grid">
+    <div class="use-card">
+      <div class="uc-icon">⚽</div>
+      <h3>Times</h3>
+      <p>Uniforme completo com nome e número individual. Cada jogador com a sua peça exclusiva.</p>
+    </div>
+    <div class="use-card">
+      <div class="uc-icon">🏢</div>
+      <h3>Empresas</h3>
+      <p>Uniformize sua equipe ou produza brindes com a identidade visual da sua marca.</p>
+    </div>
+    <div class="use-card">
+      <div class="uc-icon">🎉</div>
+      <h3>Eventos</h3>
+      <p>Formaturas, festas, aniversários, confraternizações — uma lembrança que fica para sempre.</p>
+    </div>
+    <div class="use-card">
+      <div class="uc-icon">👾</div>
+      <h3>Criadores</h3>
+      <p>Merch exclusivo para influenciadores, artistas e marcas independentes.</p>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<section class="gallery-section" id="galeria">
+  <div class="gallery-inner">
+    <p class="s-label">Galeria</p>
+    <h2 class="s-title">Veja o que<br/>já foi feito</h2>
+    <div class="gallery-wrap" id="galleryWrap"></div>
+  </div>
+</section>
+
+<!-- TECIDOS -->
+<div class="section">
+  <p class="s-label">Material</p>
+  <h2 class="s-title">Feita em<br/>Helanquinha</h2>
+  <div class="fabrics" style="grid-template-columns: 1fr; max-width: 560px;">
+    <div class="fabric-card">
+      <div class="fabric-icon">✨</div>
+      <div class="fabric-name">Helanquinha</div>
+      <p class="fabric-desc">Toque suave, caimento impecável. Confortável para o dia a dia, eventos e uso casual. Estampas vibrantes que duram lavagem após lavagem. A escolha certa para quem quer estilo, conforto e praticidade.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div class="pricing-section" id="precos">
+  <div class="pricing-inner">
+    <p class="s-label">Tabela de preços</p>
+    <h2 class="s-title">Quanto mais,<br/>menos você paga</h2>
+    <div class="pricing-grid">
+
+      <div class="price-card">
+        <p class="price-qty">Unidade</p>
+        <div class="price-value">R$80</div>
+        <p class="price-unit">por camisa</p>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>Peça <span>única</span></li>
+          <li>Estampa <span>personalizada</span></li>
+          <li>Tecido <span>Helanquinha</span></li>
+        </ul>
+      </div>
+
+      <div class="price-card featured">
+        <p class="price-qty">A partir de 5 uni</p>
+        <div class="price-value">R$45</div>
+        <p class="price-unit">por camisa</p>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>Artes <span>diferentes por peça</span></li>
+          <li>Nome e número <span>individual</span></li>
+          <li>Ideal para <span>grupos e times</span></li>
+        </ul>
+      </div>
+
+      <div class="price-card">
+        <p class="price-qty">A partir de 15 uni</p>
+        <div class="price-value">R$40</div>
+        <p class="price-unit">por camisa</p>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>Melhor <span>custo-benefício</span></li>
+          <li>Mesmo prazo <span>de entrega</span></li>
+          <li>Vale para a <span>mesma arte</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- INFO -->
+<div class="section">
+  <p class="s-label">O que você precisa saber</p>
+  <h2 class="s-title">Sem surpresas</h2>
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="icon">🕓</div>
+      <h3>Prazo de entrega</h3>
+      <p>Em média <strong>10 dias úteis</strong> após confirmação do pedido e aprovação da arte.</p>
+    </div>
+    <div class="info-card">
+      <div class="icon">🎨</div>
+      <h3>Criação de arte</h3>
+      <p>Já tem o design? Ótimo. Se precisar criar ou ajustar, pode haver uma <strong>taxa de design</strong> — pergunte antes de fechar.</p>
+    </div>
+    <div class="info-card">
+      <div class="icon">👕</div>
+      <h3>Artes individuais</h3>
+      <p>Personalização por peça (nome, número, etc.) é possível a partir de <strong>5 unidades</strong> por R$45 cada.</p>
+    </div>
+  </div>
+  <div class="note-box">
+    <div class="note-icon">⚠️</div>
+    <p>
+      <strong>Atenção:</strong> os preços em quantidade valem para camisas com a <strong>mesma arte</strong>. Com personalização individual por peça, o valor mínimo é <strong>R$45,00/uni</strong>. Consulte seu vendedor sobre possível taxa de criação antes de finalizar o pedido.
+    </p>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <div class="final-cta-box">
+    <h2>Sua idéia merece<br/><em>sair do papel.</em></h2>
+    <p>Seja para você, para sua equipe ou para presentear — transformamos qualquer arte em uma camisa que impressiona.</p>
+    <div class="cta-row" style="justify-content:center; margin-top: 0;">
+      <a href="/p/contatos/" class="btn-primary">Falar com vendedor →</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Camisa Estampa Total</strong> · Helanquinha · Personalização completa</p>
+  <p style="margin-top:8px;">Prazo médio de 10 dias úteis · Consulte condições de arte com seu vendedor</p>
+</footer>
+
+<!-- GALLERY SCRIPT -->
+<script>
+(async () => {
+  const wrap = document.getElementById('galleryWrap');
+
+  let slides = [];
+  try {
+    const res = await fetch('galeria.json');
+    if (!res.ok) throw new Error();
+    const data = await res.json();
+    slides = Array.isArray(data.galeria) ? data.galeria : [];
+  } catch (_) {
+    slides = [];
+  }
+
+  if (slides.length === 0) {
+    wrap.innerHTML = `
+      <div class="gallery-empty">
+        <span class="ge-icon">🖼️</span>
+        As fotos aparecerão aqui.<br/>
+        Adicione os caminhos das imagens no arquivo <strong>galeria.json</strong>.
+      </div>`;
+    return;
+  }
+
+  let current = 0;
+  const total = slides.length;
+
+  // ── track ──
+  const trackOuter = document.createElement('div');
+  trackOuter.className = 'gallery-track-outer';
+
+  const track = document.createElement('div');
+  track.className = 'gallery-track';
+
+  slides.forEach(slide => {
+    const s = document.createElement('div');
+    s.className = 'gallery-slide';
+
+    if (slide.src) {
+      const img = document.createElement('img');
+      img.src = slide.src;
+      img.alt = slide.legenda || '';
+      img.loading = 'lazy';
+      img.onerror = () => {
+        s.innerHTML = `
+          <div class="gallery-placeholder">
+            <span class="ph-icon">🖼️</span>
+            <span class="ph-text">${slide.src}</span>
+          </div>`;
+        if (slide.legenda) {
+          const cap = document.createElement('div');
+          cap.className = 'slide-caption';
+          cap.textContent = slide.legenda;
+          s.appendChild(cap);
+        }
+      };
+      s.appendChild(img);
+    } else {
+      s.innerHTML = `<div class="gallery-placeholder"><span class="ph-icon">🖼️</span></div>`;
+    }
+
+    if (slide.legenda) {
+      const cap = document.createElement('div');
+      cap.className = 'slide-caption';
+      cap.textContent = slide.legenda;
+      s.appendChild(cap);
+    }
+
+    track.appendChild(s);
+  });
+
+  trackOuter.appendChild(track);
+  wrap.appendChild(trackOuter);
+
+  // ── nav ──
+  const nav = document.createElement('div');
+  nav.className = 'gallery-nav';
+
+  const arrows = document.createElement('div');
+  arrows.className = 'gallery-arrows';
+
+  const btnPrev = document.createElement('button');
+  btnPrev.className = 'g-arrow';
+  btnPrev.innerHTML = '←';
+  btnPrev.setAttribute('aria-label', 'Anterior');
+
+  const btnNext = document.createElement('button');
+  btnNext.className = 'g-arrow';
+  btnNext.innerHTML = '→';
+  btnNext.setAttribute('aria-label', 'Próximo');
+
+  arrows.appendChild(btnPrev);
+  arrows.appendChild(btnNext);
+
+  const dots = document.createElement('div');
+  dots.className = 'gallery-dots';
+  const dotEls = slides.map((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'g-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', `Slide ${i + 1}`);
+    d.addEventListener('click', () => goTo(i));
+    return d;
+  });
+  dotEls.forEach(d => dots.appendChild(d));
+
+  const counter = document.createElement('div');
+  counter.className = 'gallery-counter';
+
+  nav.appendChild(arrows);
+  nav.appendChild(dots);
+  nav.appendChild(counter);
+  wrap.appendChild(nav);
+
+  // ── logic ──
+  function update() {
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dotEls.forEach((d, i) => d.classList.toggle('active', i === current));
+    btnPrev.disabled = current === 0;
+    btnNext.disabled = current === total - 1;
+    counter.innerHTML = `<b>${current + 1}</b> / ${total}`;
+  }
+
+  function goTo(i) {
+    current = Math.max(0, Math.min(i, total - 1));
+    update();
+  }
+
+  btnPrev.addEventListener('click', () => goTo(current - 1));
+  btnNext.addEventListener('click', () => goTo(current + 1));
+
+  // swipe
+  let startX = 0;
+  trackOuter.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  trackOuter.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+  });
+
+  // keyboard
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') goTo(current - 1);
+    if (e.key === 'ArrowRight') goTo(current + 1);
+  });
+
+  update();
+})();
+</script>
+
+</body>
+</html>

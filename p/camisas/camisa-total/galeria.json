@@ -1,0 +1,36 @@
+{
+  "galeria": [
+    {
+      "src": "imagens/interclasse.jpeg",
+      "legenda": "Estampa exclusiva para jogos de interclasse"
+    },
+    {
+      "src": "imagens/sao-severino.jpg",
+      "legenda": "Fardas personalizadas com tema natalino"
+    },
+    {
+      "src": "imagens/pai-verde05.jpg",
+      "legenda": "Camisa para presentear o pai com uma estampa divertida"
+    },
+    {
+      "src": "imagens/naruto.jpg",
+      "legenda": "Camisa para presentear o pai com uma estampa divertida"
+    },
+    {
+      "src": "imagens/patrulha-canina.jpg",
+      "legenda": "Estampa infantil personalizada com os personagens favoritos"
+    },
+    {
+      "src": "imagens/thundercats.jpg",
+      "legenda": "Revivendo os clássicos com camisas personalizadas dos Thundercats"
+    },
+    {
+      "src": "imagens/guardians.jpg",
+      "legenda": "Camisas para interclasse"
+    },
+    {
+      "src": "imagens/bts.jpg",
+      "legenda": "Camisa personalizada para fã do BTS"
+    }
+  ]
+}
